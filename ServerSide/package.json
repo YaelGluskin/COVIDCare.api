@@ -4,14 +4,16 @@
   "description": "A system for managing the database of corona patients and those who have been vaccinated.",
   "main": "server.js",
   "scripts": {
-    "start" : "node server",
-    "dev" : "nodemon server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.1"
+    "date-fns": "^3.6.0",
+    "express": "^4.19.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
