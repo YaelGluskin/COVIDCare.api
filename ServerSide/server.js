@@ -4,9 +4,11 @@ const path = require('path')
 const { logger } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const PORT = process.env.PORT || 3500
 // The logger wull be before everything else
 app.use(logger)
+app.use(cors()) // avoid other origins requests resources from our API
 // Receive and parse json data
 app.use(express.json())
 // Receive and parse cookies
