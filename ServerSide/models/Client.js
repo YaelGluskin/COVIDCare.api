@@ -1,35 +1,48 @@
 const mongoose = require('mongoose')
-const AutoIncrement = require('mongoose-sequence')(mongoose)
 const clientSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    firstName: {
-        type: String,
-        required: true
-    },
-    secondName: {
+    name: {
         type: String,
         required: true
     },
     id: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    activestatus: {
-        type: Boolean,
-        default: true
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    telephone_number: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    phone_number: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    address: {
+        city: {
+            type: String,
+            required: true
+        },
+        street: {
+            type: String,
+            required: true
+        },
+        house_number: {
+            type: String,
+            required: true
+        }
+    },
+    birth_date: {
+        type: Date,
+        required: true
     }
-},
-{
-    timestamps: true
-}
-)
-clientSchema.plugin(AutoIncrement, {
-    inc_field: 'ticket',
-    id: 'tickerNums',
-    start_seq: 500
-})
+});
+
 module.exports = mongoose.model('Client', clientSchema) 
+
