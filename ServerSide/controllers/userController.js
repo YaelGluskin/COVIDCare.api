@@ -1,19 +1,18 @@
-const User = require('../models/Client')
-const Client = require('../models/Client')
+const User = require('../models/User')
 const expressAsync = require('express-async-handler')
 const bcryptjs = require('bcrypt');
 
 
-//
+// Function to get all users
 const getUsers = expressAsync(async (req, res) => {
-    const users = await User.find().select('-password'.lean) // Get all users from MongoDB less the users' passwords
-    if(!users) {
+    const users = await User.find().select('-password').lean() // Get all users from MongoDB less the users' passwords
+    if(!users?.length) {
         return res.status(400).json({message: "No Users Found"})
     }
     res.json(users)
 })
 
-//
+// Function to create a new user
 const createUser = expressAsync(async (req, res) => {
     const {username, password, roles} = req.body
 
@@ -24,18 +23,14 @@ const createUser = expressAsync(async (req, res) => {
 
     // Check for duplicate username
     const duplicateUser = await User.findOne({username}).lean().exec()
-
     if(duplicateUser) {
         return res.status(409).json({ message: 'Duplicate user-name' })
     }
-
     // Hash password 
     const hashedPassword = await bcryptjs.hash(password, 10) // salt rounds
     const userObject = { username, "password": hashedPassword, roles }
-
     // Create and store new user 
     const user = await User.create(userObject)
-
     if (user) { //created 
         res.status(201).json({ message: `New user ${username} created` })
     } else {
@@ -80,7 +75,7 @@ const updateUser = expressAsync(async (req, res) => {
 })
 
 //
-const deleteteUser = expressAsync(async (req, res) => {
+const deleteUser = expressAsync(async (req, res) => {
     const {id} = req.body
     if (!id) {
         return res.status(400).json({ message: 'User ID Required' })
@@ -102,5 +97,5 @@ module.exports = {
     getUsers,
     createUser,
     updateUser,
-    deleteteUser
+    deleteUser
 }
