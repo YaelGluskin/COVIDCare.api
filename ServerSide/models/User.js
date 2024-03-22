@@ -12,10 +12,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Employee"
     }],
-    activestatus: {
+    ractivestatus: {
         type: Boolean,
         default: true
-    }
+    },
 })
-
 module.exports = mongoose.model('User', userSchema)
