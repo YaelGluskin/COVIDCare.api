@@ -31,7 +31,7 @@ const createUser = expressAsync(async (req, res) => {
     const userObject = { username, "password": hashedPassword, roles }
     // Create and store new user 
     const user = await User.create(userObject)
-    if (user) { //created 
+    if (user) { // The user got created 
         res.status(201).json({ message: `New user ${username} created` })
     } else {
         res.status(400).json({ message: 'Invalid user data received' })
@@ -42,7 +42,7 @@ const createUser = expressAsync(async (req, res) => {
 const updateUser = expressAsync(async (req, res) => {
     const {id, username, roles, active, password} = req.body
 
-    // Confirm data 
+    // Mabey to change it to userName only
     if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== 'boolean') {
         return res.status(400).json({ message: 'All fields except password are required' })
     }

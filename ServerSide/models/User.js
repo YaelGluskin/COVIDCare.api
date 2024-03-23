@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Employee"
     }],
-    ractivestatus: {
+    activestatus: {
         type: Boolean,
         default: true
     },
