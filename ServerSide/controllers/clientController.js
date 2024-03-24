@@ -13,10 +13,10 @@ const getClients = expressAsync(async (req, res) => {
 
 // Function to create a new client
 const createClient = expressAsync(async (req, res) => {
-    const { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birth_date } = req.body
+    const { N, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate } = req.body
 
     // Check if all required fields are provided
-    if (!clientName || !clientID || !email || !cellPhoneNumber || !telephoneNumber || !address || !birth_date) {
+    if (!clientName || !clientID || !email || !cellPhoneNumber || !telephoneNumber || !address || !birthDate) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -27,7 +27,7 @@ const createClient = expressAsync(async (req, res) => {
     }
 
     // Create a new client object
-    const clientObject = { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birth_date }
+    const clientObject = { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate }
 
     
     // Create and store new client
@@ -40,21 +40,35 @@ const createClient = expressAsync(async (req, res) => {
 });
 
 const updateClient = expressAsync(async (req, res) => {
-    const { id, clientName, clientID, email, cellPhoneNumber, telephoneNumber, address } = req.body;
-    
+    //const { id, clientName, clientID, email, cellPhoneNumber, telephoneNumber, address } = req.body;
+    const { id, clientID, birthDate, ...updateFields } = req.body;
     // Confirm data
-    if (!id ) {
-        return res.status(400).json({ message: 'All fields except ID and birth date are required' });
+    if (!id || !clientID) {
+        return res.status(400).json({ message: 'Both _id and clientID are required for updating a client' });
     }
-
+    
     // Does the client exist to update?
     const client = await Client.findById(id).exec();
 
     if (!client) {
         return res.status(400).json({ message: 'Client Not Found' });
     }
+    // if(client.birthDate !== birthDate || client.clientID !== clientID) {
+    //     return res.status(400).json({ message: 'You can\'t update a birth date or id' });
+    // }
+    // Update the client details (excluding clientID and birthDate)
+    for (const [key, value] of Object.entries(updateFields)) {
+        if (client[key] !== undefined) {
+            client[key] = value;
+        }
+    }
 
-    // Update the details (excluding clientID and birth_date)
+    // Save the updated client
+    const updatedClient = await client.save();
+    res.json({ message: `${updatedClient.clientName} updated` });
+
+    // Update the details (excluding clientID and birthDate)
+    /** 
     client.clientName = clientName;
     client.email = email;
     client.cellPhoneNumber = cellPhoneNumber;
@@ -68,10 +82,26 @@ const updateClient = expressAsync(async (req, res) => {
         console.error('Error updating client:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
+    */
 });
 
 const deleteClient = expressAsync(async (req, res) => {
+    const {id} = req.body
+    if (!id) {
+        return res.status(400).json({ message: 'Client ID Required' })
+    }
+    // There is no assighned ckients to client
 
+    // Check if ckient exict
+    const client = await Client.findById(id).exec()
+    if(!client){
+        return req.status(400).json({message:'client Not Found'})
+    }
+    
+    const result = await client.deleteOne()
+    
+    const reply = `clientname ${result.clientName} with ID ${result._id} deleted`
+    res.json(reply)
 });
 
 module.exports = {

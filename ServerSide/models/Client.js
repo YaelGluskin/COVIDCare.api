@@ -35,7 +35,7 @@ const clientSchema = new mongoose.Schema({
             required: true
         }
     },
-    birth_date: {
+    birthDate: {
         type: Date,
         required: true
     }
