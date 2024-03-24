@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const vaccineSchema = new mongoose.Schema({
     date: {
         type: Date,
@@ -15,4 +14,4 @@ const vaccineSchema = new mongoose.Schema({
         required: true
     }
 });
-module.exports =  mongoose.model('Vaccine', vaccineSchema);
+module.exports =  mongoose.model('Vaccine', vaccineSchema)
