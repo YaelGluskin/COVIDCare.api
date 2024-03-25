@@ -2,10 +2,10 @@ import {createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import {apiSlice } from "../../app/api/apiSlice";
 
 // Create an entity adapter for managing user entities
-const usersAdapter = createEntityAdapter({});
+const userEntityManager = createEntityAdapter({});
 
 // Define the initial state using the entity adapter, if it exict
-const initialState = usersAdapter.getInitialState();
+const initialUserState = userEntityManager.getInitialState();
 // Inject endpoints into the apiSlice from the external apiSlice module
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
@@ -23,7 +23,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                     user.id = user._id; // Assign 'id' property to user object
                     return user;
                 });
-                return usersAdapter.setAll(initialState, loadedUsers); // Update state with transformed data
+                return userEntityManager.setAll(initialUserState, loadedUsers); // Update state with transformed data
             },
             providesTags: (result, error, arg) => {
                 // Provide tags for caching purposes
@@ -58,4 +58,4 @@ export const {
     selectAll: selectAllUsers,
     selectById: selectUserById,
     selectIds: selectUserIds
-} = usersAdapter.getSelectors(state => selectUsersData(state) ?? initialState);
+} = userEntityManager.getSelectors(state => selectUsersData(state) ?? initialUserState);

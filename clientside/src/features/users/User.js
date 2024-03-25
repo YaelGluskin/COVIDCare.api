@@ -13,13 +13,13 @@ const User = ({ userId }) => {
         // Function to handle edit button click, navigates to user edit page
         const handleEdit = () => navigate(`/dash/users/${userId}`)
         // Convert user roles array to string for display
-        const userRolesString = user.roles.toString().replaceAll(',', ', ') // For looking good
+        const userRolesDisplay = user.roles.toString().replaceAll(',', ', ') // For looking good
         const cellStatus = user.active ? '' : 'table__cell--inactive'  // Determine cell status based on user's active status
 
         return ( // Render user row
             <tr className="table__row user">
                 <td className={`table__cell ${cellStatus}`}>{user.username}</td>
-                <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
+                <td className={`table__cell ${cellStatus}`}>{userRolesDisplay}</td>
                 <td className={`table__cell ${cellStatus}`}>
                     {/* Edit button */}
                     <button
