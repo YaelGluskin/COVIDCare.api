@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // Allow nested routes
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> 
       <BrowserRouter>
         <Routes>
           <Route path='/*'element = {<App />} />

@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
-import { buildGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 // Configure the Redux store using the configureStore function from "@reduxjs/toolkit".
 export const store = configureStore({
