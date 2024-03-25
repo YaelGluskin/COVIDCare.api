@@ -29,6 +29,7 @@ app.use('/', require('./routes/root'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('/clients', require('./routes/clientRoutes'))
 app.use('/vaccines', require('./routes/vacRoutes'))
+app.use('/diseases', require('./routes/diseaseRoutes'))
 // Handle the pages who dont find
 app.all('*', (req, res) => {
     res.status(404)
