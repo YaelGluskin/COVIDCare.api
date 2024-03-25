@@ -7,7 +7,9 @@ const diseaseSchema = new mongoose.Schema({
     },
     dateRecovery: {
         type: Date,
-        required: false
+        required: false,
+        default: null
+        
     },
     client: {
         type: mongoose.Schema.Types.ObjectId,
@@ -18,6 +20,6 @@ const diseaseSchema = new mongoose.Schema({
 diseaseSchema.plugin(AutoIncrement, {
     inc_field: 'diseaseClients',
     id: 'diseaseNums',
-    start_seq: 0
+    start_seq: 1
 })
 module.exports =  mongoose.model('Disease', diseaseSchema)
