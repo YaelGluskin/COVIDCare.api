@@ -15,4 +15,9 @@ const vaccineSchema = new mongoose.Schema({
         required: true
     }
 });
+vaccineSchema.plugin(AutoIncrement, {
+    inc_field: 'vacinneClients',
+    id: 'vaccineNums',
+    start_seq: 0
+})
 module.exports =  mongoose.model('Vaccine', vaccineSchema)
