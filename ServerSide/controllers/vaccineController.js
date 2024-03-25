@@ -16,7 +16,7 @@ const createVaccine = expressAsync(async (req, res) => {
     const { date, name, client } = req.body;
     console.log(client)    
      // If the require fields not exsit
-     if (!date || !name || !client ) { 
+    if (!date || !name || !client ) { 
         return res.status(400).json({ message:'All fields are required'})
     }
     const clientRef = await Client.findById(client).exec()
@@ -33,11 +33,11 @@ const createVaccine = expressAsync(async (req, res) => {
     clientRef.nunOfVaccine = numberOfClients+1; 
     const updatedCliebts = await clientRef.save();
     
-    // Create a new client object
+    // Create a new vaccine object
     const vaccineObject = {date, name, client}
 
     console.log(vaccineObject);
-    // Create and store new client
+    // Create and store new vaccine
     const vaccine = await Vaccine.create(vaccineObject)
     console.log("3");
     if (vaccine) {

@@ -18,6 +18,6 @@ const vaccineSchema = new mongoose.Schema({
 vaccineSchema.plugin(AutoIncrement, {
     inc_field: 'vacinneClients',
     id: 'vaccineNums',
-    start_seq: 0
+    start_seq: 1
 })
 module.exports =  mongoose.model('Vaccine', vaccineSchema)
