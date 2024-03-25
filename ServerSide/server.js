@@ -27,7 +27,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'))
 app.use('/users', require('./routes/userRoutes'))
-app.use('/routes', require('./routes/clientRoutes'))
+app.use('/clients', require('./routes/clientRoutes'))
 app.use('/vaccines', require('./routes/vacRoutes'))
 // Handle the pages who dont find
 app.all('*', (req, res) => {

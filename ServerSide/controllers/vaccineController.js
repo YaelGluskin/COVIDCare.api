@@ -14,16 +14,11 @@ const getVaccines = expressAsync(async (req, res) => {
 
 const createVaccine = expressAsync(async (req, res) => {
     const { date, name, client } = req.body;
-    console.log(client)
-
-    
+    console.log(client)    
      // If the require fields not exsit
      if (!date || !name || !client ) { 
         return res.status(400).json({ message:'All fields are required'})
     }
-
-    // const clientRef = await Client.find({client}).lean().exec() // If it id of Mongoo, dont put with {}
-    // const clientRef = await Client.findById(client).lean().exec()
     const clientRef = await Client.findById(client).exec()
     if(clientRef) {
         console.log("ggod")
@@ -34,16 +29,12 @@ const createVaccine = expressAsync(async (req, res) => {
     if (numberOfClients >= 4) {
         return res.status(400).json({ message: 'Client already has 4 vaccines' });
     }
-    else{
-        clientRef.nunOfVaccine = numberOfClients+1;
-        
-    }
-    console.log(numberOfClients);
-    console.log(clientRef.nunOfVaccine);
+    // A check if it is not the same date in the fron-end side.
+    clientRef.nunOfVaccine = numberOfClients+1; 
     const updatedCliebts = await clientRef.save();
     
     // Create a new client object
-    const vaccineObject = {  date, name, client}
+    const vaccineObject = {date, name, client}
 
     console.log(vaccineObject);
     // Create and store new client
@@ -58,12 +49,36 @@ const createVaccine = expressAsync(async (req, res) => {
 })
 
 const updateVaccine = expressAsync(async (req, res) => {
-    
-    
+    const {id, date, name, client } = req.body;
+    if(!id) {
+        return res.status(400).json({ message:'You must enter id of vaccine'})
+    }
+    const vaccine = await Vaccine.findById(id).exec()
+    vaccine.name = name
+    vaccine.date = date
+    const updatedVac = await vaccine.save()
+    res.json({message: `Vaccine of updated`})
 })
 
 const deleteVaccine = expressAsync(async (req, res) => {
+    const { id } = req.body;
     
+    // Confirm data
+    if (!id) {
+        return res.status(400).json({ message: 'Vaccine ID required' })
+    }
+
+    // Confirm note exists to delete 
+    const vac = await Vaccine.findById(id).exec()
+
+    if (!vac) {
+        return res.status(400).json({ message: 'Vaccine not found' })
+    }
+
+    const result = await vac.deleteOne()
+
+    const reply = `Vaccine deleted`
+    res.json(reply)
 });
 
 module.exports = {
