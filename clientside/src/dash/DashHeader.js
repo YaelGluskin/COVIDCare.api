@@ -10,7 +10,7 @@ const DashHeader = () => {
                     Clicking on the title navigates to the dashboard.
                 */}
                 <Link to="/dash">
-                    <h1 className="dash-header__title">COVIDCare data base</h1>
+                    <h1 className="dash-header__title">COVIDCare</h1>
                 </Link>
                 {/* 
                     Placeholder for navigation buttons. 
