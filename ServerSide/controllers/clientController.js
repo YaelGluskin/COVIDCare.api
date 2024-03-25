@@ -13,7 +13,7 @@ const getClients = expressAsync(async (req, res) => {
 
 // Function to create a new client
 const createClient = expressAsync(async (req, res) => {
-    const { N, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate } = req.body
+    const { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate } = req.body
 
     // Check if all required fields are provided
     if (!clientName || !clientID || !email || !cellPhoneNumber || !telephoneNumber || !address || !birthDate) {

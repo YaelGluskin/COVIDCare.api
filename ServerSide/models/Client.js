@@ -38,6 +38,11 @@ const clientSchema = new mongoose.Schema({
     birthDate: {
         type: Date,
         required: true
+    },
+    nunOfVaccine: {
+        type: Number,
+        required: false,
+        default: 0
     }
 });
 

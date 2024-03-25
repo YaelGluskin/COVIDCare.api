@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose)
 const vaccineSchema = new mongoose.Schema({
     date: {
         type: Date,
