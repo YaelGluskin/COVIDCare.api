@@ -16,6 +16,7 @@ import EditVaccine from './features/vaccine/EditVaccine';
 import NewVaccine from './features/vaccine/NewVaccine';
 import EditDisease from './features/disease/EditDisease';
 import NewDisease from './features/disease/NewDisease';
+import Prefetch from './features/auth/PreFatch';
 /*
   Summary:
   - This file defines the routing configuration for the application using React Router.
@@ -32,33 +33,34 @@ function App() {
       <Route path="/" element = {<Layout/>}/>
       <Route index element={<Public/>} />
       <Route path = "login" element={<Login/>}/>
-      <Route path = "dash" element={<DashLayout />} >
-        <Route index element={<Welcom />} />
+      <Route element={<Prefetch/>}>
+        <Route path = "dash" element={<DashLayout />} >
+          <Route index element={<Welcom />} />
 
-        <Route path="clients">
-          <Route index element={<ClientsList />} />
-          <Route path=':id' element={<EditClient />} />
-          <Route path='new' element={<NewClient />} />
+          <Route path="clients">
+            <Route index element={<ClientsList />} />
+            <Route path=':id' element={<EditClient />} />
+            <Route path='new' element={<NewClient />} />
+          </Route>
+
+          <Route path="users">
+            <Route index element={<UsersList />} />
+            <Route path=':id' element={<EditUser />} />
+            <Route path='new' element={<NewUser />} />
+          </Route>
+
+          <Route path="vaccines">
+            <Route index element={<VaccineList />} />
+            <Route path=':id' element={<EditVaccine />} />
+            <Route path='new' element={<NewVaccine />} />
+          </Route>
+
+          <Route path="diseases">
+            <Route index element={<DiseaseList />} />
+            <Route path=':id' element={<EditDisease />} />
+            <Route path='new' element={<NewDisease />} />
+          </Route> {/**end dash */}
         </Route>
-
-        <Route path="users">
-          <Route index element={<UsersList />} />
-          <Route path=':id' element={<EditUser />} />
-          <Route path='new' element={<NewUser />} />
-        </Route>
-
-        <Route path="vaccines">
-          <Route index element={<VaccineList />} />
-          <Route path=':id' element={<EditVaccine />} />
-          <Route path='new' element={<NewVaccine />} />
-        </Route>
-
-        <Route path="diseases">
-          <Route index element={<DiseaseList />} />
-          <Route path=':id' element={<EditDisease />} />
-          <Route path='new' element={<NewDisease />} />
-        </Route>
-
       </Route>
     </Routes>
   );

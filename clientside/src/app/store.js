@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
-
+import { setupListeners } from "@reduxjs/toolkit/query";
 // Configure the Redux store using the configureStore function from "@reduxjs/toolkit".
 export const store = configureStore({
     // The reducer object defines the initial state and the functions to handle actions for different parts of the state.
@@ -19,3 +19,5 @@ export const store = configureStore({
     // It is set to true to enable the extension in the browser.
     devTools: true
 });
+
+setupListeners(store.dispatch)
