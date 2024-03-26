@@ -1,2 +1,3 @@
- 1. [] start!
+ 1. [ ] start!
  2. [ ] finish
+ 3. [ ] 
