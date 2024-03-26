@@ -13,11 +13,12 @@ const Disease = ({ diseaseId }) => {
         // Function to handle edit button click, navigates to disease edit page
         const handleEdit = () => navigate(`/dash/diseases/${diseaseId}`)
         const diseaseDate = new Date(disease.date).toLocaleString('en-IL', { day: 'numeric', month: 'long', year: 'numeric' })
+        const recoveryDate = new Date(disease.date).toLocaleString('en-IL', { day: 'numeric', month: 'long', year: 'numeric' })
         // const clientId = new String(disease.client)
         return ( // Render disease row
             <tr className="table__row disease">
-                <td className="table__cell accineDate">{diseaseDate}</td>
-                <td className={`table__cell `}>{disease.name}</td>
+                <td className="table__cell ">{diseaseDate}</td>
+                <td className={`table__cell `}>{recoveryDate}</td>
                 <td className={`table__cell `}>{disease.clientName} , id: {disease.clientID}</td>
                 <td className={`table__cell `}>
                     {/* Edit button */}

@@ -1,0 +1,59 @@
+[33mc9286b7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Create Disease component and DiseaseApiSlice
+[33m25482b0[m[33m ([m[1;31morigin/main[m[33m)[m Vaccine
+[33m26eea52[m Set Table of vaccine
+[33m8517b91[m Transferring client id and name along with the disease and vaccine
+[33m23c41db[m Set Vaccine List
+[33m95d3a34[m Set Vaccine
+[33m803559f[m Set Get at vaccineApiSlice
+[33m08214f7[m Create vaccineApiSlice and Vaccine component
+[33m8059796[m Code correction
+[33m9bea4f7[m Completion of clients list
+[33m1da0072[m List of client and ajust table for clients
+[33md74e5e3[m Create clientApislice and Client component
+[33m41a94de[m Run User at Local Host
+[33mb4296dc[m Initializes the get function of the user in React
+[33md3ebd0c[m Set useGetUsersQuery
+[33m4b8e541[m Set redux
+[33m0244a84[m Opening message correction
+[33m063facd[m Set Routes
+[33mecfe800[m Routing Hierarchy
+[33mac30adf[m Nested Dash Routes
+[33m284e5cf[m Set React and the first routes
+[33m74d9fdc[m CRUD func for disease
+[33m8f6b1e0[m Necessary changes in vaccine
+[33m9b52b89[m Set Disease moudle and controller
+[33m83b3010[m Add sequence
+[33mccb8c19[m Crud finc for vaccine
+[33mc2123ae[m Create Get & Post for vaccine
+[33m42ed4b9[m Fix comments
+[33m4c8afda[m Adjust the model of client and vaccine
+[33m8ac3785[m Set Route for Vaccine
+[33m7710e4a[m Set CRUD for Vaccine
+[33me029630[m Create vaccine DB moudle
+[33m7068882[m Update server for Clients
+[33ma8e6520[m Client DB checks
+[33m678820d[m set CRUD func for Client
+[33m8cf0b9d[m Fix user files
+[33m096a0a3[m Set Client DB
+[33m14d82ed[m Set CRUD func for user
+[33m697e212[m fix errors
+[33m7933642[m set CURD func for user
+[33mf88c07a[m user CRUD
+[33m6c8118a[m set async handler for create CRUD
+[33mc6fab28[m Connect MongoDB to the server
+[33md5e8023[m first models for Data Base
+[33m6968d9e[m set NomgoDB
+[33mf2dddc7[m Merge pull request #6 from YaelGluskin/master
+[33m3a0b3ec[m[33m ([m[1;31morigin/master[m[33m)[m Merge pull request #5 from YaelGluskin/main
+[33m25ec999[m Merge pull request #4 from YaelGluskin/master
+[33mec4aa3d[m Securing CORS
+[33m3465a44[m cors
+[33mb654fe8[m Cookies
+[33mc769f72[m Merge pull request #3 from YaelGluskin/master
+[33m26fc8fe[m Merge pull request #2 from YaelGluskin/main
+[33m7f7881b[m  Error Handler
+[33ma09817a[m Merge pull request #1 from YaelGluskin/master
+[33md0bd32e[m  Custom Log Middleware
+[33m4e5733f[m Merge branch 'main' of https://github.com/YaelGluskin/COVIDCare
+[33m7df05bf[m[33m ([m[1;32mbackend[m[33m)[m Initial commit
+[33m0d9b4e9[m Initial commit
