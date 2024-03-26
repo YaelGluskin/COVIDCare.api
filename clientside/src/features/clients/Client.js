@@ -22,6 +22,7 @@ const Client = ({ clientId }) => {
             <td className="table__cell">{client.clientName}</td>
             <td className="table__cell">{client.clientID}</td>
             <td className="table__cell">{client.address.city}</td>
+            <td className="table__cell">{client.cellPhoneNumber}</td>
             <td className="table__cell">{client.nunOfVaccine}</td>
             <td className="table__cell">
                 {/* Edit button */}

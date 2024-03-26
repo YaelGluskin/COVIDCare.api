@@ -27,6 +27,7 @@ const ClientsList = () => {
                     <th scope="col" className="table__th client__Name">Name</th>
                     <th scope="col" className="table__th client__ID">ID</th>
                     <th scope="col" className="table__th client__City">City</th>
+                    <th scope="col" className="table__th client__Phone">Phone Number</th>
                     <th scope="col" className="table__th client__Vaccines">Number Of Vaccines</th>
                     <th scope="col" className="table__th client__edit">Edit</th>
                 </tr>
