@@ -218,24 +218,6 @@ tr {
   gap: 0.1em;
 }
 
-/* Note */
-.note__created,
-.note__updated,
-.note__username {
-  display: none;
-}
-
-.note__status {
-  font-weight: bold;
-}
-
-.note__status--open {
-  color: var(--STATUS-OPEN);
-}
-
-.note__status--completed {
-  color: var(--STATUS-COMPLETE);
-}
 
 /* Form - General */
 .form {
@@ -348,7 +330,7 @@ tr {
   }
 
   .note__created,
-  .note__updated,
+  .note__updatedL,
   .note__username {
     display: block
   }
@@ -356,4 +338,39 @@ tr {
   .form__action-buttons {
     position: static;
   }
+}
+/* || FORM - GENERAL */
+
+.General_Form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.75em;
+  max-width: 800px;
+}
+
+.General_Form__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.General_Form__action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+  position: absolute;
+  right: 0.5em;
+}
+
+.General_Form__row {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 2em;
+}
+
+.General_Form__divider {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5em;
 }
