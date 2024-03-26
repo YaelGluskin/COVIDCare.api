@@ -16,7 +16,6 @@ export const clientsApiSlice = apiSlice.injectEndpoints({
                 // Custom status validation function some error return 200 status, so we need to check them both.
                 return response.status === 200 && !result.isError;
             },
-            keepUnusedDataFor: 5, // Keep unused data for caching in defaule about 15 sec.
             transformResponse: responseData => {
                 // Transform response data before storing it in the Redux store
                 const loadedClients = responseData.map(client => {
