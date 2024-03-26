@@ -24,10 +24,10 @@ function App() {
         <Route path="users">
           <Route index element={<UsersList />} />
         </Route>
-        <Route path="vaccine">
+        <Route path="vaccines">
           <Route index element={<VaccineList />} />
         </Route>
-        <Route path="disease">
+        <Route path="diseases">
           <Route index element={<DiseaseList />} />
         </Route>
 

@@ -209,6 +209,15 @@ tr {
   gap: 0.1em;
 }
 
+.tableV {
+  font-size: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  color: var(--TABLE-COLOR);
+  gap: 0.1em;
+}
+
 /* Note */
 .note__created,
 .note__updated,
