@@ -8,7 +8,6 @@ import { selectClientById } from './clientsApiSlice'
 const Client = ({ clientId }) => {
     const client = useSelector(state => selectClientById(state, clientId)) // Select client from Redux store by clientId
     const navigate = useNavigate() // Hook to navigate to different routes
-    console.log(client)
     if (!client) return null; // If client does not exist, return null (no rendering)
 
     // Function to handle edit button click, navigates to client edit page

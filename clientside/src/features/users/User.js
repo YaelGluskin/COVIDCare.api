@@ -7,7 +7,7 @@ import { selectUserById } from './usersApiSlice'
 // React component representing a user row in a table
 const User = ({ userId }) => {
     const user = useSelector(state => selectUserById(state, userId)) // Select user from Redux store by userId
-   const navigate = useNavigate() // Hook to navigate to different routes
+    const navigate = useNavigate() // Hook to navigate to different routes
 
     if (user) { // If user exists, render user details
         // Function to handle edit button click, navigates to user edit page
