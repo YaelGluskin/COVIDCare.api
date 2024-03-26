@@ -14,7 +14,11 @@ const vaccineSchema = new mongoose.Schema({
         ref: 'Client', // Reference to the Client model
         required: true
     }
-});
+},
+{
+    timestamps: true
+}
+);
 vaccineSchema.plugin(AutoIncrement, {
     inc_field: 'vacinneClients',
     id: 'vaccineNums',

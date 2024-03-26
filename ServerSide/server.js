@@ -20,7 +20,7 @@ app.use(logger)
 app.use(cors(corsOptions)) // avoid other origins requests resources from our API
 // Receive and parse json data
 app.use(express.json())
-// Receive and parse cookies
+// Receive and parse cookies 
 app.use(cookieParser())
 // Navigate to the public
 app.use('/', express.static(path.join(__dirname, 'public')))

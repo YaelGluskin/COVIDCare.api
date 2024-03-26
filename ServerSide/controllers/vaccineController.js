@@ -9,7 +9,13 @@ const getVaccines = expressAsync(async (req, res) => {
     if(!vaccines?.length) {
         return res.status(400).json({message: "No vaccines Found"})
     }
-    res.json(vaccines)
+    // Add client ID and client name to each vaccine before sending the response 
+    const vaccineWithClient = await Promise.all(vaccines.map(async (vaccine) => {
+        const client = await Client.findById(vaccine.client).lean().exec()
+        return { ...vaccine, clientID: client.clientID,  clientName: client.clientName}
+    }))
+
+    res.json(vaccineWithClient)
 });
 
 const createVaccine = expressAsync(async (req, res) => {
@@ -68,7 +74,7 @@ const deleteVaccine = expressAsync(async (req, res) => {
         return res.status(400).json({ message: 'Vaccine ID required' })
     }
 
-    // Confirm note exists to delete 
+    // Confirm vaccine exists to delete 
     const vac = await Vaccine.findById(id).exec()
 
     if (!vac) {

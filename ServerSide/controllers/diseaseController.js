@@ -10,7 +10,13 @@ const getdiseases = expressAsync(async (req, res) => {
     if(!diseases?.length) {
         return res.status(400).json({message: "No diseases Found"})
     }
-    res.json(diseases)
+    // Add client ID and client name to each disease before sending the response 
+    const diseaseWithClient = await Promise.all(diseases.map(async (disease) => {
+        const client = await Client.findById(disease.client).lean().exec()
+        return { ...disease, clientID: client.clientID,  clientName: client.clientName}
+    }))
+
+    res.json(diseaseWithClient)
 });
 
 const createdisease = expressAsync(async (req, res) => {
