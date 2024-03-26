@@ -7,7 +7,6 @@ import { selectVaccineById } from './vaccinesApiSlice'
 // React component representing a vaccine row in a table
 const Vaccine = ({ vaccineId }) => {
     const vaccine = useSelector(state => selectVaccineById(state, vaccineId)) // Select vaccine from Redux store by vaccineId
-    console.log(vaccine)
     const navigate = useNavigate() // Hook to navigate to different routes
     if (vaccine) { // If vaccine exists, render vaccine details
         // Function to handle edit button click, navigates to vaccine edit page
