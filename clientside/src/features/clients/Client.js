@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectClientById } from './clientsApiSlice'
@@ -30,7 +30,7 @@ const Client = ({ clientId }) => {
                     onClick={handleEdit}
                 >
                     {/* Edit icon */}
-                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <FontAwesomeIcon icon={faInfoCircle} />
                 </button>
             </td>
         </tr>

@@ -8,7 +8,12 @@ const ClientsList = () => {
         isSuccess,
         isError,
         error  
-    } = useGetClientsQuery();
+    } = useGetClientsQuery(
+        undefined, {
+            pollingInterval: 60000,
+            refetchOnFocus: true,
+            refetchOnMountOrArgChange: true
+        });
 
     let content // Define content variable to render based on loading and success states
     if(isLoading) content = <p>Louding clients...</p>// Display loading message while fetching data
@@ -29,7 +34,7 @@ const ClientsList = () => {
                     <th scope="col" className="table__th client__City">City</th>
                     <th scope="col" className="table__th client__Phone">Phone Number</th>
                     <th scope="col" className="table__th client__Vaccines">Number Of Vaccines</th>
-                    <th scope="col" className="table__th client__edit">Edit</th>
+                    <th scope="col" className="table__th client__edit">INFO</th>
                 </tr>
             </thead>
             <tbody>

@@ -1,14 +1,15 @@
+
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectClientById } from "./clientsApiSlice"
-import EditClientForm from './EditClientForm'
+import ClientDetails from './ClientDetails'
 
-const EditClient = () => {
-  const {id} =useParams()
+const ClientData = () => {
+  const {id} = useParams()
   const client = useSelector(state => selectClientById(state, id))
   console.log(client)
-  const content =client? <EditClientForm client={client} /> :<p> Louding ...</p>
+  const content = client ? <ClientDetails key={client.id} clientId={client.id} /> : <p>Loading...</p>
   return content;
 }
 
-export default EditClient
+export default ClientData;
