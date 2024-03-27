@@ -25,8 +25,8 @@ const EditDiseaseForm = ({ disease, clients }) => {
     const navigate = useNavigate();
 
     // State variables to store positive date and recovery date
-    const [positiveDate, setPositiveDate] = useState(disease.datePositive);
-    const [recoveryDate, setRecoveryDate] = useState(disease.dateRecovery);
+    const [positiveDate, setPositiveDate] = useState('');
+    const [recoveryDate, setRecoveryDate] = useState('');
 
     // Effect hook to navigate to the diseases page after successful addition of a new disease or deletion
     useEffect(() => {
@@ -67,8 +67,8 @@ const EditDiseaseForm = ({ disease, clients }) => {
         // Update the disease with new dates
         await updateDisease({ 
             id: disease.id, 
-            datePositive: positiveDate,
-            dateRecovery: recoveryDate
+            datePositive: positiveDate || disease.datePositive,
+            dateRecovery: recoveryDate || disease.dateRecovery
         });
     };
 
@@ -95,15 +95,17 @@ const EditDiseaseForm = ({ disease, clients }) => {
                     <h2>Edit Disease #{disease.ticket}</h2>
                     <div className="form__action-buttons">
                         {/* Save button */}
-                        <button
-                            className="icon-button"
-                            title="Save"
-                            onClick={onSaveDiseaseClicked}
-                            disabled={isLoading}
-                            value={new Date(disease.datePositive).toLocaleDateString()}
-                        >
-                            <FontAwesomeIcon icon={faSave} />
-                        </button>
+                        {(recoveryDate || positiveDate) && (
+                            <button
+                                className="icon-button"
+                                title="Save"
+                                onClick={onSaveDiseaseClicked}
+                                disabled={isLoading}
+                                value={new Date(disease.datePositive).toLocaleDateString()}
+                            >
+                                <FontAwesomeIcon icon={faSave} />
+                            </button>
+                        )}
                         {/* Delete button */}
                         <button
                             className="icon-button"

@@ -4,6 +4,7 @@ import { useAddNewDiseaseMutation } from "./diseasesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
+
 // Define a functional component called NewDiseaseForm
 const NewDiseaseForm = ({ clients }) => {
     // Custom hook to add a new disease mutation
@@ -32,11 +33,12 @@ const NewDiseaseForm = ({ clients }) => {
         }
     }, [isSuccess, nav]);
 
+
+     
     // Event handlers for input changes
     const onPosChanged = e => setDatePositive(e.target.value);
     const onRecChanged = e => setDateRecovery(e.target.value);
     const onClientIdChanged = e => setClient(e.target.value);
-
     // Check if all required fields are filled and the form is not loading
     const canSave = [datePositive, dateRecovery, client].every(Boolean) && !isLoading;
 
