@@ -7,7 +7,12 @@ const VaccinesList = () => {
         isSuccess,
         isError,
         error  
-     } = useGetVaccinesQuery();
+     } = useGetVaccinesQuery(
+        undefined, {
+            pollingInterval: 60000,
+            refetchOnFocus: true,
+            refetchOnMountOrArgChange: true
+        });
      
  
      let content // Define content variable to render based on loading and success states
