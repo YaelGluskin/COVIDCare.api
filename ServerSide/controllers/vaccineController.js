@@ -80,7 +80,10 @@ const deleteVaccine = expressAsync(async (req, res) => {
     if (!vac) {
         return res.status(400).json({ message: 'Vaccine not found' })
     }
-
+    // less one vac from the client
+    const clientRef = await Client.findById(vac.client).exec()
+    clientRef.nunOfVaccine = clientRef.nunOfVaccine-1; 
+    const updatedCliebts = await clientRef.save();
     const result = await vac.deleteOne()
 
     const reply = `Vaccine deleted`

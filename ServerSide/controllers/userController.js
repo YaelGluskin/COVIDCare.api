@@ -40,10 +40,10 @@ const createUser = expressAsync(async (req, res) => {
 
 //
 const updateUser = expressAsync(async (req, res) => {
-    const {id, username, roles, activestatus, password} = req.body
+    const {id, username, roles, active, password} = req.body
 
     // Mabey to change it to userName only
-    if (!id || !username || !Array.isArray(roles) || !roles.length || typeof activestatus !== 'boolean') {
+    if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== 'boolean') {
         return res.status(400).json({ message: 'All fields except password are required' })
     }
     // Does the user exist to update?
@@ -62,7 +62,7 @@ const updateUser = expressAsync(async (req, res) => {
     // Update the details
     user.username = username
     user.roles = roles
-    user.activestatus = activestatus
+    user.active = active
 
     if (password) {
         // Hash password 
