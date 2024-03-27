@@ -1,9 +1,13 @@
-// Placeholder for routing
+import { useSelector } from 'react-redux'
+import { selectAllClients} from '../clients/clientsApiSlice'
+import NewDiseaseForm from './NewDiseaseForm'
 
-const NewDisease = () => {
-  return (
-    <div>NewDisease</div>
-  )
+const NewDisease = () => { // Component for creating a new disease
+  const clients = useSelector(selectAllClients) // Select all clients from the Redux store
+  if (!clients?.length) return <p>Not Currently Available</p>
+
+  const content = <NewDiseaseForm users={clients} />
+  return content
 }
 
 export default NewDisease

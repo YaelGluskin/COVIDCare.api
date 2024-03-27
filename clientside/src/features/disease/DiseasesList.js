@@ -7,7 +7,12 @@ const DiseasesList = () => {
         isSuccess,
         isError,
         error  
-     } = useGetDiseasesQuery();
+     } = useGetDiseasesQuery(
+        undefined, {
+            pollingInterval: 60000,
+            refetchOnFocus: true,
+            refetchOnMountOrArgChange: true
+        });
     
      let content // Define content variable to render based on loading and success states
      if(isLoading) content = <p>Louding diseases...</p>// Display loading message while fetching data
