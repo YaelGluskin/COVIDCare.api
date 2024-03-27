@@ -220,6 +220,9 @@ tr {
 
 
 /* Form - General */
+.error-message {
+  color: 'red'
+}
 .form {
   display: flex;
   flex-flow: column nowrap;
@@ -373,4 +376,42 @@ tr {
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5em;
+}
+
+/* Present client*/
+.client-details-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.client-details {
+  margin-bottom: 20px;
+}
+
+.detail {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.value {
+  flex-grow: 1;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
 }

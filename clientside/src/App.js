@@ -16,6 +16,7 @@ import EditVaccine from './features/vaccine/EditVaccine';
 import NewVaccine from './features/vaccine/NewVaccine';
 import EditDisease from './features/disease/EditDisease';
 import NewDisease from './features/disease/NewDisease';
+import ClientData from './features/clients/ClientData'
 import Prefetch from './features/auth/PreFatch';
 /*
   Summary:
@@ -34,12 +35,15 @@ function App() {
       <Route index element={<Public/>} />
       <Route path = "login" element={<Login/>}/>
       <Route element={<Prefetch/>}>
+
         <Route path = "dash" element={<DashLayout />} >
           <Route index element={<Welcom />} />
 
           <Route path="clients">
             <Route index element={<ClientsList />} />
-            <Route path=':id' element={<EditClient />} />
+            <Route path=':id/' element={<ClientData />} />
+            <Route path=':id/edit' element={<EditClient />} />
+            
             <Route path='new' element={<NewClient />} />
           </Route>
 
@@ -59,8 +63,9 @@ function App() {
             <Route index element={<DiseaseList />} />
             <Route path=':id' element={<EditDisease />} />
             <Route path='new' element={<NewDisease />} />
+            
           </Route> {/**end dash */}
-        </Route>
+        </Route> {/**end outer */}
       </Route>
     </Routes>
   );

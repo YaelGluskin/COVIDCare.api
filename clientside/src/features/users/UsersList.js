@@ -8,7 +8,12 @@ const UsersList = () => { // Component for displaying a list of users
        isSuccess,
        isError,
        error  
-    } = useGetUsersQuery();
+    } = useGetUsersQuery(
+        undefined, {
+            pollingInterval: 60000,
+            refetchOnFocus: true,
+            refetchOnMountOrArgChange: true
+    });
     
 
     let content // Define content variable to render based on loading and success states
