@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DASH_REGEX, CLIENTS_REGEX, USERS_REGEX, DISEASES_REGEX, VACCINES_REGEX } from "../config/dash";
 
 const DashHeader = () => {
     const content = (
