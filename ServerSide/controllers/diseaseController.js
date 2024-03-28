@@ -19,24 +19,37 @@ const getdiseases = expressAsync(async (req, res) => {
     res.json(diseaseWithClient)
 });
 
+
+
 const createdisease = expressAsync(async (req, res) => {
-    const{ datePositive, dateRecovery, client} = req.body
-    if (!datePositive || !client ) { 
-        return res.status(400).json({ message:'Must enter client and date of posotive result'})
+    const { datePositive, dateRecovery, client } = req.body;
+    if (!datePositive || !client) { 
+        return res.status(400).json({ message:'Must enter client and date of positive result' });
     }
-    const clientRef = await Disease.find({client}).lean().exec()
-    if(clientRef?.length) {
-        return res.status(409).json({ message: `A disease was recorded for ${clientRef}` })
-    }
-    const diseaseObject = {datePositive, dateRecovery, client}
-    // Create and store new Disease
-    const disease = await Disease.create(diseaseObject)
-    if (disease) {
-        return res.status(201).json({ message: `New disease of  ${client} at ${datePositive} created` })
-    } else {
-        return res.status(400).json({ message: 'Failed to create disease' })
+
+    try {
+        let disease = await Disease.findOne({ client }).exec();
+
+        if (disease) {
+            disease.infected = true;
+            await disease.save();
+            return res.status(409).json({ message: `A disease was recorded for ${client}` });
+        }
+
+        const diseaseObject = { datePositive, dateRecovery, client };
+        disease = await Disease.create(diseaseObject);
+        
+        if (disease) {
+            return res.status(201).json({ message: `New disease of ${client} at ${datePositive} created` });
+        } else {
+            return res.status(400).json({ message: 'Failed to create disease' });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 const updatedisease = expressAsync(async (req, res) => {
     const{ id, datePositive, dateRecovery} = req.body

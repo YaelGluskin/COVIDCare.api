@@ -26,11 +26,6 @@ const createVaccine = expressAsync(async (req, res) => {
         return res.status(400).json({ message:'All fields are required'})
     }
     const clientRef = await Client.findById(client).exec()
-    if(clientRef) {
-        console.log("ggod")
-        console.log(clientRef)
-        // return res.status(409).json({ message: 'Duplicate user-name' })
-    }
     const numberOfClients = clientRef.nunOfVaccine
     if (numberOfClients >= 4) {
         return res.status(400).json({ message: 'Client already has 4 vaccines' });
@@ -45,7 +40,6 @@ const createVaccine = expressAsync(async (req, res) => {
     console.log(vaccineObject);
     // Create and store new vaccine
     const vaccine = await Vaccine.create(vaccineObject)
-    console.log("3");
     if (vaccine) {
         return res.status(201).json({ message: `New vaccine of  ${name} at ${date}created` })
     } else {
