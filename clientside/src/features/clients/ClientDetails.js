@@ -5,7 +5,8 @@ import { selectClientById } from './clientsApiSlice';
 import { selectAllVaccines } from '../vaccine/vaccinesApiSlice';
 import { selectAllDiseases } from '../disease/diseasesApiSlice';
 
-const ClientDetails = ({ clientId }) => {
+const ClientDetails = ({ initialClientId }) => {
+    const [clientId, setClientId] = useState(initialClientId);
     const client = useSelector(state => selectClientById(state, clientId));
     const navigate = useNavigate();
     const allVaccines = useSelector(selectAllVaccines);
@@ -33,6 +34,14 @@ const ClientDetails = ({ clientId }) => {
 
     const handleEdit = () => navigate(`/dash/clients/${clientId}/edit`);
 
+    const handleNewVac = ({clientId}) => navigate(`/dash/vaccines/new`);
+    const handleEditVac = ({clientId}) => navigate(`/dash/vaccines/${clientId}/edit`);
+    const handleNewDis = ({clientId}) => navigate(`/dash/diseases/new`);
+    const handleEditDis = ({clientId}) => navigate(`/dash/diseases/${clientId}`);
+    // Work
+    const handleEditVaccine = (vaccineId) => { navigate(`/dash/vaccines/${vaccineId}`) };
+    const handleEditDisease = (diseaseId) => { navigate(`/dash/diseases/${diseaseId}`) };
+  
 
 
 
@@ -79,12 +88,18 @@ const ClientDetails = ({ clientId }) => {
           {(client.nunOfVaccine !== 0) &&(
             <ul>
                 {vaccines.map(vaccine => (
-                    <li key={vaccine._id}>
+                    <li key={vaccine.id}>
                         Date:{new Date(vaccine.date).toLocaleDateString()}, Name: {vaccine.name}
+                        <button onClick={() => handleEditVaccine(vaccine.id)}>Edit Vaccine</button>
                     </li>
                 ))}
             </ul>
-            )}
+          )}
+          {(client.nunOfVaccine !== 4)&& (
+            <button  onClick={handleNewVac}>
+            Add new Vaccine
+          </button>
+          )}
             
 
             
@@ -96,6 +111,7 @@ const ClientDetails = ({ clientId }) => {
                             <li key={disease.id}>
                                 Date Positive: {new Date(disease.datePositive).toLocaleDateString()},
                                 Date Recovery: {disease.dateRecovery ? new Date(disease.dateRecovery).toLocaleDateString() : 'Not recovered yet'}
+                                <button onClick={() => handleEditDisease(disease.id)}>Edit Disease</button>
                             </li>
                         ))}
                     </ul>
@@ -104,9 +120,11 @@ const ClientDetails = ({ clientId }) => {
                 <h3>The client did not had covid</h3>
             )}
 
-          <button className="edit-button" onClick={handleEdit}>
-            Edit
+          <button  className="icon-button table__button" onClick={handleEdit}>
+            Edit Detail
           </button>
+          
+                
         </div>
       );
       

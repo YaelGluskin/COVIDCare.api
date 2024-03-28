@@ -127,7 +127,7 @@ const NewClient = () => {
           <div className="General_Form__action-buttons">
             {(goSave)&&(
             <button
-              className="custom-icon-button"
+              className="icon-button"
               title="Save"
               
             >

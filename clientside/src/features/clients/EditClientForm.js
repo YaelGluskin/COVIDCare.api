@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useUpdateClientMutation, useDeleteClientMutation } from "./clientsApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faTrash , faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import * as yup from 'yup';
 
 const EditClientForm = ({ client }) => {
@@ -92,6 +92,7 @@ const EditClientForm = ({ client }) => {
   const onDeleteClientClicked = async () => {
     await deleteClient({id: client.id});
   };
+  const onBackClientClicked = () => nav(`/dash/clients/${client.id}`);
 
   const errClass = (updateError || deleteError) ? "errmsg" : "offscreen";
   const errorContent = updateErrorData?.message || deleteErrorData?.message;
@@ -105,7 +106,7 @@ const EditClientForm = ({ client }) => {
           <div className="General_Form__action-buttons">
             {goSave && (
               <button
-                className="custom-icon-button"
+                className="icon-button"
                 title="Save"
               >
                 <FontAwesomeIcon icon={faSave} />
@@ -117,6 +118,14 @@ const EditClientForm = ({ client }) => {
               onClick={onDeleteClientClicked}
             >
               <FontAwesomeIcon icon={faTrash} />
+            </button>
+
+            <button
+              className="icon-button"
+              title="Back"
+              onClick={onBackClientClicked}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
             </button>
           </div>
         </div>
@@ -197,8 +206,8 @@ const EditClientForm = ({ client }) => {
           onChange={handleAdressChange}
         />
         {errorsA.house_number && <span className="error-message"  >{errorsA.house_number}</span>}
-
-        <label className="General_Form__label" htmlFor="birthDate">Birth Date:</label>
+              {/* I dont want to update birth day */}
+        {/* <label className="General_Form__label" htmlFor="birthDate">Birth Date:</label>
         <input
           className={`General_Form__input`}
           id="birthDate"
@@ -207,7 +216,7 @@ const EditClientForm = ({ client }) => {
           value={clientData.birthDate}
           onChange={handleChange}
         />
-                {errors.birthDate && <span className="error-message">{errors.birthDate}</span>}
+                {errors.birthDate && <span className="error-message">{errors.birthDate}</span>} */}
       </form>
     </>
   );

@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 // Define a functional component called NewVaccineForm
-const NewVaccineForm = ({ clients }) => {
+const NewVaccineForm = ({ clientId }) => {
+    //const [clientIdPath, setClientIdPath] = useState(clientId);
     // Custom hook to add a new vaccine mutation
     const [addNewVaccine, {
         isLoading,
@@ -16,7 +17,6 @@ const NewVaccineForm = ({ clients }) => {
 
     // Hook for navigation
     const nav = useNavigate();
-
     // State variables to store positive date, recovery date, and client ID
     const [date, setDate] = useState('');
     const [name, setName] = useState('');
@@ -55,7 +55,7 @@ const NewVaccineForm = ({ clients }) => {
         }
         
         // Check if the client has received more than three vaccinations
-        if(client.nunOfVaccine > 3) {
+        if(client.nunOfVaccine > 3) { 
             alert("The client has already received four vaccinations.");
             return;
         }
@@ -117,7 +117,7 @@ const NewVaccineForm = ({ clients }) => {
                     onChange={onNameChanged}
                 />
 
-                {/* Input field for client ID */}
+                Input field for client ID 
                 <label className="form__label" htmlFor="client">
                     Client ID:</label>
                 <input
@@ -128,7 +128,7 @@ const NewVaccineForm = ({ clients }) => {
                     value={client}
                     onChange={onClientIdChanged}
                 />
-
+               
             </form>
         </>
     );

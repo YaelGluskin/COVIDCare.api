@@ -74,7 +74,7 @@ const NewUser = () => {
           <h2>New User</h2>
           <div className="General_Form__action-buttons">
             <button
-              className="custom-icon-button"
+              className="icon-button"
               title="Save"
               disabled={!goSave}
             >

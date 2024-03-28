@@ -13,10 +13,10 @@ const Welcom =() => {
             <p><Link to="/dash/clients/new">    Create new Client</Link></p>
 
             <p><Link to="/dash/vaccines">View Vaccines</Link></p>
-            <p><Link to="/dash/vaccines/new">   Create new Vaccine</Link></p>
+            {/* <p><Link to="/dash/vaccines/new">   Create new Vaccine</Link></p> */}
 
             <p><Link to="/dash/diseases">View Disease</Link></p>
-            <p><Link to="/dash/diseases/new">   Create new Disease</Link></p>
+            {/* <p><Link to="/dash/diseases/new">   Create new Disease</Link></p> */}
             
         </section>
     )

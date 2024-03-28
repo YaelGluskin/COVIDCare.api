@@ -94,7 +94,7 @@ const EditUserForm = ({user}) => {
         <div className="General_Form__title-row">
           <h2>Edit User</h2>
           <div className="General_Form__action-buttons">
-            <button className="custom-icon-button"
+            <button className="icon-button"
               title="Save"
               onClick={onSaveUserClicked}
               disabled={!goSave}

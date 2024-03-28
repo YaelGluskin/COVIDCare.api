@@ -13,11 +13,12 @@ import NewUser from './features/users/NewUser';
 import EditClient from './features/clients/EditClient';
 import NewClient from './features/clients/NewClient';
 import EditVaccine from './features/vaccine/EditVaccine';
-import NewVaccine from './features/vaccine/NewVaccine';
+import NewVaccineForm from './features/vaccine/NewVaccineForm';
 import EditDisease from './features/disease/EditDisease';
 import NewDisease from './features/disease/NewDisease';
 import ClientData from './features/clients/ClientData'
 import Prefetch from './features/auth/PreFatch';
+import NewVaccine from './features/vaccine/NewVaccine';
 /*
   Summary:
   - This file defines the routing configuration for the application using React Router.
@@ -57,6 +58,7 @@ function App() {
             <Route index element={<VaccineList />} />
             <Route path=':id' element={<EditVaccine />} />
             <Route path='new' element={<NewVaccine />} />
+            <Route path=':id/new' element={<NewVaccineForm />} />
           </Route>
 
           <Route path="diseases">
