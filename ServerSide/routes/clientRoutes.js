@@ -2,7 +2,9 @@ const express = require('express') // Importing the Express module
 const router = express.Router() // Creating a router object from the Express Router
 // Importing the userController module which contains CRUD operations for users
 const clientController = require('../controllers/clientController');
+const verifyJWT = require('../middleware/verifyJWT')
 
+router.use(verifyJWT) // Apply JWT verification middleware to all routes
 
 router.route('/') // Define routes for CRUD operations on clients
     .get(clientController.getClients)     // GET request to retrieve all clients
