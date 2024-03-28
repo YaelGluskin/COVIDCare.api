@@ -83,6 +83,6 @@ By following this structured approach, the system effectively manages user data,
 
 ![Create new disease](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/clients.png)![image]
 
-(https://github.com/YaelGluskin/COVIDCare/assets/145065202/dbc1accd-c1cc-4d9b-bd58-dcc1e71741a1)
+
 
 
