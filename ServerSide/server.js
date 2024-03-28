@@ -26,9 +26,11 @@ app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'))
-app.use('/auth', require('./routes/userRoutes')) // Add auth routes to server
+
+app.use('/auth', require('./routes/authRoutes')) // Add auth routes to server
 app.use('/users', require('./routes/userRoutes'))
 app.use('/clients', require('./routes/clientRoutes'))
+
 app.use('/vaccines', require('./routes/vacRoutes'))
 app.use('/diseases', require('./routes/diseaseRoutes'))
 // Handle the pages who dont find

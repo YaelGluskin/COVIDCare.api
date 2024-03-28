@@ -67,22 +67,6 @@ const updateClient = expressAsync(async (req, res) => {
     const updatedClient = await client.save();
     res.json({ message: `${updatedClient.clientName} updated` });
 
-    // Update the details (excluding clientID and birthDate)
-    /** 
-    client.clientName = clientName;
-    client.email = email;
-    client.cellPhoneNumber = cellPhoneNumber;
-    client.telephoneNumber = telephoneNumber;
-    client.address = address;
-
-    try {
-        const updatedClient = await client.save();
-        res.json({ message: `${updatedClient.clientName} updated` });
-    } catch (error) {
-        console.error('Error updating client:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-    */
 });
 
 const deleteClient = expressAsync(async (req, res) => {
