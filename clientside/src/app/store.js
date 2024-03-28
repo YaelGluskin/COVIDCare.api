@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import authReducer from "../features/auth/authSlice";
 // Configure the Redux store using the configureStore function from "@reduxjs/toolkit".
 export const store = configureStore({
     // The reducer object defines the initial state and the functions to handle actions for different parts of the state.
     // In this case, the apiSlice.reducer is assigned to a specific key in the state.
     reducer: {
-        [apiSlice.reducerPath]: apiSlice.reducer
+        [apiSlice.reducerPath]: apiSlice.reducer,
+        auth: authReducer,
     },
 
     // The middleware option allows for customizing the middleware stack.
