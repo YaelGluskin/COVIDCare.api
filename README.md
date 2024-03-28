@@ -77,7 +77,7 @@ By following this structured approach, the system effectively manages user data,
 
 ![Client List](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/clients.png)
 
-
+![detail](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/client.png)
 
 ![new Disease](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/newDis.png)
 
