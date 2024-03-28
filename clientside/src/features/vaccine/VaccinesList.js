@@ -33,7 +33,7 @@ const VaccinesList = () => {
                      <tr>
                          <th scope="col" className="table__th vaccine__vaccinename">Vaccine Date</th>
                          <th scope="col" className="table__th vaccine__roles">Vaccine Name</th>
-                         <th scope="col" className="table__th vaccine__edit">Client ID</th>
+                         <th scope="col" className="table__th vaccine__edit">Client INFO</th>
                          <th scope="col" className="table__th vaccine__edit">Edit</th>
                      </tr>
                  </thead>

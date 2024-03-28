@@ -76,7 +76,7 @@ const EditVaccineForm = ({ vaccine, clients }) => {
             <div className="form">
                 <div className="form__title-row">
                     {/* Form title and action buttons */}
-                    <h2>Edit Vaccine #{vaccine.ticket}</h2>
+                    <h2>Edit Vaccine </h2>
                     <div className="form__action-buttons">
                         {/* Save button */}
                          {/* Conditional rendering of the save button */}

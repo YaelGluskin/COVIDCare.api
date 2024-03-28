@@ -92,7 +92,7 @@ const EditDiseaseForm = ({ disease, clients }) => {
             <div className="form">
                 <div className="form__title-row">
                     {/* Form title and action buttons */}
-                    <h2>Edit Disease #{disease.ticket}</h2>
+                    <h2>Edit Disease </h2>
                     <div className="form__action-buttons">
                         {/* Save button */}
                         {(recoveryDate || positiveDate) && (
