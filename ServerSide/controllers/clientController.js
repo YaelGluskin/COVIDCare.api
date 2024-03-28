@@ -13,10 +13,10 @@ const getClients = expressAsync(async (req, res) => {
 
 // Function to create a new client
 const createClient = expressAsync(async (req, res) => {
-    const { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate } = req.body
+    const { clientName, clientLastName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate } = req.body
 
     // Check if all required fields are provided
-    if (!clientName || !clientID || !email || !cellPhoneNumber || !telephoneNumber || !address || !birthDate) {
+    if (!clientName || !clientLastName ||  !clientID || !email || !cellPhoneNumber || !telephoneNumber || !address || !birthDate) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -27,20 +27,20 @@ const createClient = expressAsync(async (req, res) => {
     }
 
     // Create a new client object
-    const clientObject = { clientName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate }
+    const clientObject = { clientName, clientLastName, clientID, email, cellPhoneNumber, telephoneNumber, address, birthDate }
 
     
     // Create and store new client
     const client = await Client.create(clientObject)
     if (client) {
-        return res.status(201).json({ message: `New client ${clientName} created` })
+        return res.status(201).json({ message: `New client ${clientName} ${clientLastName}created` })
     } else {
         return res.status(400).json({ message: 'Failed to create client' })
     }
 });
 
 const updateClient = expressAsync(async (req, res) => {
-    //const { id, clientName, clientID, email, cellPhoneNumber, telephoneNumber, address } = req.body;
+    //const { id, clientName, clientLastName, clientID, email, cellPhoneNumber, telephoneNumber, address } = req.body;
     const { id, clientID, birthDate, ...updateFields } = req.body;
     // Confirm data
     if (!id || !clientID) {

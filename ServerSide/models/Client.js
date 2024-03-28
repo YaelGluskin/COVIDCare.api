@@ -4,6 +4,10 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    clientLastName: {
+        type: String,
+        required: true
+    },
     clientID: {
         type: String,
         required: true,
@@ -43,6 +47,11 @@ const clientSchema = new mongoose.Schema({
         type: Number,
         required: false,
         default: 0
+    },
+    Infected: {
+        type: Boolean,
+        require: false,
+        default: false
     }
 });
 

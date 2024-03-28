@@ -11,6 +11,7 @@ const NewClient = () => {
 
   const [clientData, setClientData] = useState({
     clientName: '',
+    clientLastName: '',
     clientID: '',
     email: '',
     cellPhoneNumber: '',
@@ -27,6 +28,7 @@ const NewClient = () => {
     if (isSuccess) {
       setClientData({
         clientName: '',
+        clientLastName: '',
         clientID: '',
         email: '',
         cellPhoneNumber: '',
@@ -44,6 +46,7 @@ const NewClient = () => {
 
   const validationSchema = yup.object().shape({
     clientName: yup.string().matches(/^[\p{L}\s]+$/u, 'Name can only contain letters and spaces.').required(),
+    clientLastName: yup.string().matches(/^[\p{L}\s]+$/u, 'Name can only contain letters and spaces.').required(),
     clientID: yup.string().matches(/^\d{9}$/, 'Client ID must be a string of nine digits.').required(),
     email: yup.string().email().required(),
     cellPhoneNumber: yup.string().matches(/^\d{10}$/, 'Cell Phone Number must be a string of ten digits.').required(),
@@ -146,8 +149,18 @@ const NewClient = () => {
           value={clientData.clientName}
           onChange={handleChange}
         />
-        {errors.clientName && <span className="error-message"  >{errors.clientName}</span>}
+        {errors.clientLastName && <span className="error-message"  >{errors.clientLastName}</span>}
         
+        <label className="General_Form__label" htmlFor="clientLastName">Client Name:</label>
+        <input
+          className={`General_Form__input`}
+          id="clientLastName"
+          name="clientLastName"
+          type="text"
+          value={clientData.clientLastName}
+          onChange={handleChange}
+        />
+        {errors.clientLastName && <span className="error-message"  >{errors.clientLastName}</span>}
 
         <label htmlFor="clientID">Client ID:</label>
         <input

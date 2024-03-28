@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectClientById } from './clientsApiSlice';
 import { selectAllVaccines } from '../vaccine/vaccinesApiSlice';
 import { selectAllDiseases } from '../disease/diseasesApiSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 const ClientDetails = ({ initialClientId }) => {
     const [clientId, setClientId] = useState(initialClientId);
@@ -41,7 +43,7 @@ const ClientDetails = ({ initialClientId }) => {
     // Work
     const handleEditVaccine = (vaccineId) => { navigate(`/dash/vaccines/${vaccineId}`) };
     const handleEditDisease = (diseaseId) => { navigate(`/dash/diseases/${diseaseId}`) };
-  
+    const onBackClientClicked = () => navigate(`/dash/clients`);
 
 
 
@@ -50,11 +52,30 @@ const ClientDetails = ({ initialClientId }) => {
     return (
         <div className="client-details-container">
           <h2>Client Details</h2>
+          <div className="General_Form__action-buttons">
+          <button
+              className="icon-button"
+              title="Edit"
+              onClick={handleEdit}
+            >
+              <FontAwesomeIcon icon={faPenToSquare} />
+            </button>
+
+          <button
+              className="icon-button"
+              title="Back"
+              onClick={onBackClientClicked}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+          </div>
+
           <div className="client-details">
             <div className="detail">
               <span className="label">Client Name:</span>
-              <span className="value">{client.clientName}</span>
+              <span className="value">{client.clientName} {client.clientLastName}</span>
             </div>
+            
             <div className="detail">
               <span className="label">Client ID:</span>
               <span className="value">{client.clientID}</span>
@@ -120,9 +141,7 @@ const ClientDetails = ({ initialClientId }) => {
                 <h3>The client did not had covid</h3>
             )}
 
-          <button  className="icon-button table__button" onClick={handleEdit}>
-            Edit Detail
-          </button>
+          
           
                 
         </div>
