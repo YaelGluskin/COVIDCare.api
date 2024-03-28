@@ -8,7 +8,7 @@ const DashFooter = () => {
     const { pathname } = useLocation();
     
     // Function to handle click on "Go Home" button
-    const onGoHomeClicked = () => nav('./dash');
+    const onGoHomeClicked = () => nav('');
 
     let goHomeBtn = null;
     // Render "Go Home" button only if the current path is not "/dash"
@@ -27,7 +27,7 @@ const DashFooter = () => {
     // Define the content of the DashFooter component
     const content = (
         <footer className="dash-footer">
-            {goHomeBtn}
+            <p>{goHomeBtn}</p>
             {/* Placeholder for displaying current user */}
             <p>Current User:</p>
             {/* Placeholder for displaying status */}

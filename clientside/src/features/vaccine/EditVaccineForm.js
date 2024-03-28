@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUpdateVaccineMutation, useDeleteVaccineMutation } from "./vaccinesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faTrashCan , faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 // Define a functional component called EditVaccineForm
 const EditVaccineForm = ({ vaccine, clients }) => {
@@ -61,7 +61,7 @@ const EditVaccineForm = ({ vaccine, clients }) => {
         // Delete the vaccine by its ID
         await deleteVaccine({ id: vaccine.id });
     };
-
+    const onBackClientClicked = () => navigate(`/dash/vaccines`);
     // Determine error class based on whether there is an error in updating or deleting
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen";
     // Combine error messages from both update and delete operations
@@ -98,6 +98,13 @@ const EditVaccineForm = ({ vaccine, clients }) => {
                             onClick={onDeleteVaccineClicked}
                         >
                             <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
+
+                        <button
+                        className="icon-button"
+                        title="Back"
+                        onClick={onBackClientClicked}  >
+                        <FontAwesomeIcon icon={faArrowLeft} />
                         </button>
                     </div>
                 </div>

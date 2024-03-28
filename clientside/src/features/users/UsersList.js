@@ -1,5 +1,6 @@
 import { useGetUsersQuery } from "./usersApiSlice"
-import User from "./User"; // Import the User component
+import User from "./User"; // Import the User component'
+import { useNavigate } from "react-router-dom";
 
 const UsersList = () => { // Component for displaying a list of users
     const {
@@ -14,8 +15,8 @@ const UsersList = () => { // Component for displaying a list of users
             refetchOnFocus: true,
             refetchOnMountOrArgChange: true
     });
-    
-
+    const navigate = useNavigate()
+    const handleNav = () => navigate(`/dash/users/new`);
     let content // Define content variable to render based on loading and success states
     if(isLoading) content = <p>Louding users...</p>// Display loading message while fetching data
     // Display error message if fetching data results in an error
@@ -26,19 +27,22 @@ const UsersList = () => { // Component for displaying a list of users
             ? ids.map(userId => <User key={userId} userId={userId} />)
             : null
 
-        content = ( // Render the users list table
-            <table className="table table--users">
-                <thead className="table__thead">
-                    <tr>
-                        <th scope="col" className="table__th user__username">Username</th>
-                        <th scope="col" className="table__th user__roles">Roles</th>
-                        <th scope="col" className="table__th user__edit">Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableContent}
-                </tbody>
-            </table>
+        content = ( // Render the users list table 
+            <div>
+                <table className="table table--users">
+                    <thead className="table__thead">
+                        <tr>
+                            <th scope="col" className="table__th user__username">Username</th>
+                            <th scope="col" className="table__th user__roles">Roles</th>
+                            <th scope="col" className="table__th user__edit">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tableContent}
+                    </tbody>
+                </table>
+                <button className="icon-button" title="Add new" onClick={handleNav} >  Add </button>
+            </div>
         )
     }
 

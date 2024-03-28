@@ -7,7 +7,7 @@ const Public = () => {
                 <h1>Welcome to <span className="nowrap">COVIDCare!</span></h1>
             </header>
             <main className="public__main">
-                <p>COVIDCare is a secure platform intended for registered users who are employees of the health insurance fund.</p>
+                <p>COVIDCare is a secured platform intended for registered users who are employees of the health insurance fund.</p>
                 <p>Please note that COVIDCare contains sensitive patient data and is designed for authorized personnel only.</p>
                 <address className="public__addr">
                     Health Insurance Fund<br />
@@ -20,6 +20,9 @@ const Public = () => {
             </main>
             <footer>
                 <Link to="/login">Employee Login</Link>
+            </footer>
+            <footer>
+                <Link to="/dash">breakthrough😯</Link>
             </footer>
         </section>
     );

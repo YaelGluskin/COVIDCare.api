@@ -19,14 +19,8 @@ import NewDisease from './features/disease/NewDisease';
 import ClientData from './features/clients/ClientData'
 import Prefetch from './features/auth/PreFatch';
 import NewVaccine from './features/vaccine/NewVaccine';
-/*
-  Summary:
-  - This file defines the routing configuration for the application using React Router.
-  - Routes are defined using the Routes and Route components from react-router-dom.
-  - The application layout, public pages, login page, and dashboard layout are defined as routes.
-  - Nested routes are used under the /dash route for managing clients, users, vaccines, and diseases.
-  - Each Route component specifies the component to render based on the URL path.
-*/
+import NewDiseaseForm from './features/disease/NewDiseaseForm';
+
 
 function App() {
   return (
@@ -39,12 +33,16 @@ function App() {
 
         <Route path = "dash" element={<DashLayout />} >
           <Route index element={<Welcom />} />
+          {/* <Route path="LastMonthDiary" element={<LastMonthDiary/> } >
+          </Route> */}
 
           <Route path="clients">
             <Route index element={<ClientsList />} />
             <Route path=':id/' element={<ClientData />} />
             <Route path=':id/edit' element={<EditClient />} />
-            
+            <Route path=':id/newDis' element={<NewDiseaseForm />} />
+            <Route path=':id/newVac' element={<NewVaccineForm />} />
+
             <Route path='new' element={<NewClient />} />
           </Route>
 
@@ -52,19 +50,17 @@ function App() {
             <Route index element={<UsersList />} />
             <Route path=':id' element={<EditUser />} />
             <Route path='new' element={<NewUser />} />
+            
           </Route>
 
           <Route path="vaccines">
             <Route index element={<VaccineList />} />
             <Route path=':id' element={<EditVaccine />} />
-            <Route path='new' element={<NewVaccine />} />
-            <Route path=':id/new' element={<NewVaccineForm />} />
           </Route>
 
           <Route path="diseases">
             <Route index element={<DiseaseList />} />
             <Route path=':id' element={<EditDisease />} />
-            <Route path='new' element={<NewDisease />} />
             
           </Route> {/**end dash */}
         </Route> {/**end outer */}

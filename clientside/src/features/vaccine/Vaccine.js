@@ -16,8 +16,11 @@ const Vaccine = ({ vaccineId }) => {
         return ( // Render vaccine row
             <tr className="table__row vaccine">
                 <td className="table__cell accineDate">{vaccineDate}</td>
-                <td className={`table__cell `}>{vaccine.name}</td>
-                <td className={`table__cell `}>{vaccine.clientName} , id: {vaccine.clientID}</td>
+                <td className={`table__cell `}>{vaccine.name} </td>
+                <td className={`table__cell `}>
+                    <li>{vaccine.clientName} {vaccine.clientLastName} </li> 
+                    <li> id: {vaccine.clientID} </li>
+                </td>
                 <td className={`table__cell `}>
                     {/* Edit button */}
                     <button

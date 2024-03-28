@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useUpdateUserMutation, useDeleteUserMutation} from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faSave, faTrash, faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
 import {USER_REGEX, PWD_REGEX}  from "../../config/pwd"
 
@@ -67,7 +67,7 @@ const EditUserForm = ({user}) => {
     const onDeleteUserClicked = async () => {
         await deleteUser({ id: user.id })
     }
-
+    const onBackClientClicked = () => nav(`/dash/users/`);
     const options= Object.values(ROLES).map(role => {
         return ( <option key={role} value={role} > {role} </option > )
     })
@@ -103,6 +103,14 @@ const EditUserForm = ({user}) => {
             </button>
             <button className="icon-button" title="Delete" onClick={onDeleteUserClicked} >
                 <FontAwesomeIcon icon={faTrash} /> </button>
+                <button className="icon-button" title="Back"
+              onClick={onBackClientClicked} >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+          
+
+
+
           </div>
         </div>
 

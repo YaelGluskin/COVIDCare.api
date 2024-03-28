@@ -17,7 +17,10 @@ const DiseasesList = () => {
      let content // Define content variable to render based on loading and success states
      if(isLoading) content = <p>Louding diseases...</p>// Display loading message while fetching data
      // Display error message if fetching data results in an error
-     if(isError) content = <p className="errmsg">{error?.data?.message}</p>
+     if(isError) content = (<p className="errmsg">{error?.data?.message}</p>
+
+     )
+    
      if (isSuccess) { // If data fetching is successful, render the diseases list table
          const { ids } = diseases // Generate table rows for each disease
          const tableContent = ids?.length // It has to have a key
@@ -25,6 +28,7 @@ const DiseasesList = () => {
              : null
  
          content = ( // Render the diseases list table
+        
              <table className="tableV table--diseases">
                  <thead className="table__thead">
                      <tr>
@@ -38,6 +42,9 @@ const DiseasesList = () => {
                      {tableContent}
                  </tbody>
              </table>
+
+             
+            
          )
      }
     return content // Render the content based on the current state

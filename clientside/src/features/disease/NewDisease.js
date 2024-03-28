@@ -5,8 +5,7 @@ import NewDiseaseForm from './NewDiseaseForm'
 const NewDisease = () => { // Component for creating a new disease
   const clients = useSelector(selectAllClients) // Select all clients from the Redux store
   if (!clients?.length) return <p>Not Currently Available</p>
-
-  const content = <NewDiseaseForm users={clients} />
+  const content = clients? <NewDiseaseForm users={clients} /> : <p>Loading...</p>
   return content
 }
 

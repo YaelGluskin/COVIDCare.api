@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom'
 import { useAddNewDiseaseMutation } from "./diseasesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 // Define a functional component called NewDiseaseForm
-const NewDiseaseForm = ({ clients }) => {
+const NewDiseaseForm = () => {
+    
+    const { id } = useParams() // Get the disease ID from the route parameters
+    
     // Custom hook to add a new disease mutation
     const [addNewDisease, {
         isLoading,
@@ -21,26 +25,28 @@ const NewDiseaseForm = ({ clients }) => {
     // State variables to store positive date, recovery date, and client ID
     const [datePositive, setDatePositive] = useState('');
     const [dateRecovery, setDateRecovery] = useState('');
-    const [client, setClient] = useState('');
-
+   
     // Effect hook to navigate to the diseases page after successful addition of a new disease
     useEffect(() => {
         if (isSuccess) {
             setDatePositive('');
             setDateRecovery('');
-            setClient('');
             nav('/dash/diseases');
         }
     }, [isSuccess, nav]);
 
-
-     
+    //
+    
+    
     // Event handlers for input changes
     const onPosChanged = e => setDatePositive(e.target.value);
     const onRecChanged = e => setDateRecovery(e.target.value);
-    const onClientIdChanged = e => setClient(e.target.value);
+    const onBackClientClicked = () => nav(`/dash/${id}`);
+    
+
     // Check if all required fields are filled and the form is not loading
-    const canSave = [datePositive, dateRecovery, client].every(Boolean) && !isLoading;
+    const canSave = [datePositive, dateRecovery].every(Boolean) && !isLoading;
+
 
     // Function to handle saving of a new disease
     const onSaveDiseaseClicked = async (e) => {
@@ -60,7 +66,7 @@ const NewDiseaseForm = ({ clients }) => {
 
         // If all conditions are met, add the new disease
         if (canSave) {
-            await addNewDisease({ client, datePositive, dateRecovery });
+            await addNewDisease({ client: id, datePositive, dateRecovery });
         }
     };
 
@@ -88,6 +94,14 @@ const NewDiseaseForm = ({ clients }) => {
                         >
                             <FontAwesomeIcon icon={faSave} />
                         </button>
+                        <button
+                            className="icon-button"
+                            title="Back"
+                            onClick={onBackClientClicked}
+                        >
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                        </button>
+
                     </div>
                 </div>
                 {/* Input field for positive date */}
@@ -115,17 +129,6 @@ const NewDiseaseForm = ({ clients }) => {
                     onChange={onRecChanged}
                 />
 
-                {/* Input field for client ID */}
-                <label className="form__label" htmlFor="client">
-                    Client ID:</label>
-                <input
-                    className={`form__input`}
-                    id="client"
-                    name="client"
-                    type="text"
-                    value={client}
-                    onChange={onClientIdChanged}
-                />
 
             </form>
         </>

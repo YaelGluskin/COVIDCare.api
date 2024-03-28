@@ -93,7 +93,7 @@ const EditClientForm = ({ client }) => {
   const onDeleteClientClicked = async () => {
     await deleteClient({id: client.id});
   };
-  const onBackClientClicked = () => nav(`/dash/clients/${client.id}`);
+  const onBackClientClicked = () => nav(`/dash/clients/`);
 
   const errClass = (updateError || deleteError) ? "errmsg" : "offscreen";
   const errorContent = updateErrorData?.message || deleteErrorData?.message;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectClientById } from './clientsApiSlice';
@@ -6,6 +6,7 @@ import { selectAllVaccines } from '../vaccine/vaccinesApiSlice';
 import { selectAllDiseases } from '../disease/diseasesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+
 
 const ClientDetails = ({ initialClientId }) => {
     const [clientId, setClientId] = useState(initialClientId);
@@ -30,15 +31,15 @@ const ClientDetails = ({ initialClientId }) => {
             setDiseases(clientDisease);
         }
     }, [clientId, client, allDiseases]);
-
+    
 
     if (!client) return null;
 
     const handleEdit = () => navigate(`/dash/clients/${clientId}/edit`);
 
-    const handleNewVac = ({clientId}) => navigate(`/dash/vaccines/new`);
-    const handleEditVac = ({clientId}) => navigate(`/dash/vaccines/${clientId}/edit`);
-    const handleNewDis = ({clientId}) => navigate(`/dash/diseases/new`);
+    const handleNewVac = () => navigate(`/dash/clients/${clientId}/newVac`);
+    const handleEditVac = ({client,id}) => navigate(`/dash/vaccines/${clientId}/edit`);
+    const handleNewDis = () => navigate(`/dash/clients/${clientId}/newDis`);
     const handleEditDis = ({clientId}) => navigate(`/dash/diseases/${clientId}`);
     // Work
     const handleEditVaccine = (vaccineId) => { navigate(`/dash/vaccines/${vaccineId}`) };
@@ -132,13 +133,18 @@ const ClientDetails = ({ initialClientId }) => {
                             <li key={disease.id}>
                                 Date Positive: {new Date(disease.datePositive).toLocaleDateString()},
                                 Date Recovery: {disease.dateRecovery ? new Date(disease.dateRecovery).toLocaleDateString() : 'Not recovered yet'}
+                                <br></br>
                                 <button onClick={() => handleEditDisease(disease.id)}>Edit Disease</button>
                             </li>
                         ))}
                     </ul>
                 </div>
             ) : (
+              <div>
                 <h3>The client did not had covid</h3>
+                <br></br>
+                <button onClick={() => handleNewDis(client.id)}>Add Disease</button>
+                </div>
             )}
 
           

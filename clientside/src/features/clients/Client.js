@@ -39,7 +39,9 @@ const Client = ({ clientId }) => {
             <td className="table__cell">{client.cellPhoneNumber}</td>
             {/* <td className="table__cell">{client.nunOfVaccine !== 0 ? client.nunOfVaccine : "Not vaccinated"}</td> */}
             <td className="table__cell">
-                <li>{client.infected ? 'infected': '\Not Infected with covid'}</li>
+                 {client.infected && <li>Infected</li>} {!client.infected && <li>Not Infected with COVID</li>}
+
+               
                 {client.nunOfVaccine !== 0 ? (
                 <li> {client.nunOfVaccine} Vaccination </li>) : (
                 <li>Not vaccinated</li> )

@@ -18,7 +18,10 @@ const Disease = ({ diseaseId }) => {
             <tr className="table__row disease">
                 <td className="table__cell ">{diseaseDate}</td>
                 <td className={`table__cell `}>{recoveryDate}</td>
-                <td className={`table__cell `}>{disease.clientName} , id: {disease.clientID}</td>
+                <td className={`table__cell `}>
+                    <li>{disease.clientName} {disease.clientLastName} </li> 
+                    <li> id: {disease.clientID} </li>
+                </td>
                 <td className={`table__cell `}>
                     {/* Edit button */}
                     <button

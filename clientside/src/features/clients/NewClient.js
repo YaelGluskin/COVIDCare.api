@@ -8,7 +8,6 @@ import * as yup from 'yup';
 const NewClient = () => {
   const [addNewClient, { isLoading, isSuccess, isError, error }] = useAddNewClientMutation();
   const nav = useNavigate();
-
   const [clientData, setClientData] = useState({
     clientName: '',
     clientLastName: '',
@@ -106,7 +105,11 @@ const NewClient = () => {
 
 
   // Check if there are any errors
-  const goSave = !Object.values(errors).some(error => error !== '' ) && !isLoading && !Object.values(errorsA).some(error => error !== '' );
+  const goSave =
+  Object.values(errors).every(error => !error) &&
+  Object.values(errorsA).every(error => !error) &&
+  Object.values(clientData).every(value => !!value);
+
 
   const onSaveClientClicked = async (e) => {
     e.preventDefault();
@@ -114,10 +117,12 @@ const NewClient = () => {
     if(goSave&& !isLoading)  {
       await addNewClient(clientData);
 
+     
     }
+   
     
   };
-
+  
   const errClass = isError ? "errmsg" : "offscreen";
 
   const content = (
@@ -256,6 +261,7 @@ const NewClient = () => {
         {errors.birthDate && <span className="error-message"  >{errors.birthDate}</span>}
 
       
+
       </form>
     </>
   );

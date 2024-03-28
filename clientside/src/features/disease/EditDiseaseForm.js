@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useUpdateDiseaseMutation, useDeleteDiseaseMutation } from "./diseasesApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faTrashCan, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 // Define a functional component called EditDiseaseForm
 const EditDiseaseForm = ({ disease, clients }) => {
@@ -77,7 +77,7 @@ const EditDiseaseForm = ({ disease, clients }) => {
         // Delete the disease by its ID
         await deleteDisease({ id: disease.id });
     };
-
+    const onBackClientClicked = () => navigate(`/dash/diseases/`);
     // Determine error class based on whether there is an error in updating or deleting
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen";
     // Combine error messages from both update and delete operations
@@ -114,6 +114,10 @@ const EditDiseaseForm = ({ disease, clients }) => {
                         >
                             <FontAwesomeIcon icon={faTrashCan} />
                         </button>
+                        <button className="icon-button" title="Back" onClick={onBackClientClicked}  >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                        </button>
+         
                     </div>
                 </div>
                 {/* Input field for positive date */}

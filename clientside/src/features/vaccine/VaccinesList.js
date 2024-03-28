@@ -1,5 +1,6 @@
 import { useGetVaccinesQuery } from "./vaccinesApiSlice"
 import Vaccine from "./Vaccine"; // Import the Vaccine component
+
 const VaccinesList = () => {
     const {
         data: vaccines, // Rename 'data' to 'vaccines' for clarity
@@ -15,7 +16,7 @@ const VaccinesList = () => {
         });
      
  
-     let content // Define content variable to render based on loading and success states
+     let content // Define content variable to render based on loading and success states     
      if(isLoading) content = <p>Louding vaccines...</p>// Display loading message while fetching data
      // Display error message if fetching data results in an error
      if(isError) content = <p className="errmsg">{error?.data?.message}</p>
@@ -26,6 +27,7 @@ const VaccinesList = () => {
              : null
  
          content = ( // Render the vaccines list table
+            
              <table className="tableV table--vaccines">
                  <thead className="table__thead">
                      <tr>
@@ -39,6 +41,8 @@ const VaccinesList = () => {
                      {tableContent}
                  </tbody>
              </table>
+             
+            
          )
      }
     return content // Render the content based on the current state

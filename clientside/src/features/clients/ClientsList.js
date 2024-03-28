@@ -1,5 +1,6 @@
 import { useGetClientsQuery } from "./clientsApiSlice"
 import Client from "./Client"; // Import the Client component
+import { useNavigate } from "react-router-dom";
 
 const ClientsList = () => {
     const {
@@ -14,7 +15,8 @@ const ClientsList = () => {
             refetchOnFocus: true,
             refetchOnMountOrArgChange: true
         });
-
+    const navigate = useNavigate()
+    const handleNav = () => navigate(`/dash/clients/new`);
     let content // Define content variable to render based on loading and success states
     if(isLoading) content = <p>Louding clients...</p>// Display loading message while fetching data
     // Display error message if fetching data results in an error
@@ -26,22 +28,25 @@ const ClientsList = () => {
             : null
 
             content = ( // Render the clients list table
-            <table className="tableC table--clients">
-            <thead className="table__thead">
-                <tr>
-                    <th scope="col" className="table__th client__Name">Name</th>
-                    <th scope="col" className="table__th client__ID">ID</th>
-                    <th scope="col" className="table__th client__City">City</th>
-                    <th scope="col" className="table__th client__City">Age</th>
-                    <th scope="col" className="table__th client__Phone">Phone Number</th>
-                    <th scope="col" className="table__th client__Vaccines">Number Of Vaccines</th>
-                    <th scope="col" className="table__th client__edit">INFO</th>
-                </tr>
-            </thead>
-            <tbody>
-                {tableContent}
-            </tbody>
-        </table>
+            <div>
+                <table className="tableC table--clients">
+                <thead className="table__thead">
+                    <tr>
+                        <th scope="col" className="table__th client__Name">Name</th>
+                        <th scope="col" className="table__th client__ID">ID</th>
+                        <th scope="col" className="table__th client__City">City</th>
+                        <th scope="col" className="table__th client__City">Age</th>
+                        <th scope="col" className="table__th client__Phone">Phone Number</th>
+                        <th scope="col" className="table__th client__Vaccines">Covid Head Line</th>
+                        <th scope="col" className="table__th client__edit">INFO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tableContent}
+                </tbody>
+            </table>
+            <button className="icon-button" title="Add new" onClick={handleNav} >  Add </button>
+        </div>
         
         );
     }
