@@ -1,7 +1,6 @@
-const Disease = require('../models/Disease') // Check why not capital V
+const Disease = require('../models/Disease') 
 const Client = require('../models/Client')//
 const expressAsync = require('express-async-handler')
-const bcryptjs = require('bcrypt');
 const mongoose = require('mongoose');
 
 const getdiseases = expressAsync(async (req, res) => {
@@ -13,7 +12,7 @@ const getdiseases = expressAsync(async (req, res) => {
     // Add client ID and client name to each disease before sending the response 
     const diseaseWithClient = await Promise.all(diseases.map(async (disease) => {
         const client = await Client.findById(disease.client).lean().exec()
-        return { ...disease, clientID: client.clientID,  clientName: client.clientName}
+        return { ...disease, clientID: client.clientID,  clientName: client.clientName, clientLastName: client.clientLastName}
     }))
 
     res.json(diseaseWithClient)
