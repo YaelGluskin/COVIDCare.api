@@ -14,7 +14,7 @@ const getUsers = expressAsync(async (req, res) => {
 
 // Function to create a new user
 const createUser = expressAsync(async (req, res) => {
-    const {username, password, roles} = req.body
+    const {username, password, roles} = req.body // role require only here, actually 'Emloyee' is default
 
     // If the require fields not exsit
     if (!username || !password || !Array.isArray(roles) || !roles.length) { 
@@ -40,15 +40,14 @@ const createUser = expressAsync(async (req, res) => {
 
 //
 const updateUser = expressAsync(async (req, res) => {
-    const {id, username, roles, active, password} = req.body
+    const {id, username, roles, activestatus, password} = req.body
 
     // Mabey to change it to userName only
-    if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== 'boolean') {
+    if (!id || !username || !Array.isArray(roles) || !roles.length || typeof activestatus !== 'boolean') {
         return res.status(400).json({ message: 'All fields except password are required' })
     }
     // Does the user exist to update?
     const user = await User.findById(id).exec()
-
     if (!user) {
         return res.status(400).json({message: 'User Not Found' })
     }
@@ -62,7 +61,7 @@ const updateUser = expressAsync(async (req, res) => {
     // Update the details
     user.username = username
     user.roles = roles
-    user.active = active
+    user.activestatus = activestatus
 
     if (password) {
         // Hash password 
