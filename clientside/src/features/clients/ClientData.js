@@ -7,7 +7,6 @@ import ClientDetails from './ClientDetails'
 const ClientData = () => {
   const {id} = useParams()
   const client = useSelector(state => selectClientById(state, id))
-  console.log(client)
   const content = client ? <ClientDetails key={client.id} initialClientId={client.id} /> : <p>Loading...</p>
   return content;
 }
