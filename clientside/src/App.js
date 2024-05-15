@@ -15,56 +15,67 @@ import NewClient from './features/clients/NewClient';
 import EditVaccine from './features/vaccine/EditVaccine';
 import NewVaccineForm from './features/vaccine/NewVaccineForm';
 import EditDisease from './features/disease/EditDisease';
-import NewDisease from './features/disease/NewDisease';
 import ClientData from './features/clients/ClientData'
 import Prefetch from './features/auth/PreFatch';
-import NewVaccine from './features/vaccine/NewVaccine';
 import NewDiseaseForm from './features/disease/NewDiseaseForm';
-
+import PersistLogin from './features/auth/PersistLogin';
+import { ROLES } from './config/roles'; 
+import RequireAuth from './features/auth/RequireAuth';
+import useTitle from './hooks/useTitle';
 
 function App() {
+  useTitle('CovidCare')
   return (
     <Routes>
       
       <Route path="/" element = {<Layout/>}/>
+      {/* 2 public routes */}
       <Route index element={<Public/>} />
       <Route path = "login" element={<Login/>}/>
-      <Route element={<Prefetch/>}>
 
-        <Route path = "dash" element={<DashLayout />} >
-          <Route index element={<Welcom />} />
-          {/* <Route path="LastMonthDiary" element={<LastMonthDiary/> } >
-          </Route> */}
+      {/*  protected routes */}
+      <Route element={<PersistLogin/>}>
+        <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]}/>}>
+          <Route element={<Prefetch/>}>
 
-          <Route path="clients">
-            <Route index element={<ClientsList />} />
-            <Route path=':id/' element={<ClientData />} />
-            <Route path=':id/edit' element={<EditClient />} />
-            <Route path=':id/newDis' element={<NewDiseaseForm />} />
-            <Route path=':id/newVac' element={<NewVaccineForm />} />
+            <Route path = "dash" element={<DashLayout />} >
+              <Route index element={<Welcom />} />
+              
 
-            <Route path='new' element={<NewClient />} />
-          </Route>
+              <Route path="clients">
+                <Route index element={<ClientsList />} />
+                <Route path=':id/' element={<ClientData />} />
+                <Route path=':id/edit' element={<EditClient />} />
+                <Route path=':id/newDis' element={<NewDiseaseForm />} />
+                <Route path=':id/newVac' element={<NewVaccineForm />} />
 
-          <Route path="users">
-            <Route index element={<UsersList />} />
-            <Route path=':id' element={<EditUser />} />
-            <Route path='new' element={<NewUser />} />
-            
-          </Route>
+                <Route path='new' element={<NewClient />} />
+              </Route>
 
-          <Route path="vaccines">
-            <Route index element={<VaccineList />} />
-            <Route path=':id' element={<EditVaccine />} />
-          </Route>
+              <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Manager]}/>}>
+                <Route path="users">
+                  <Route index element={<UsersList />} />
+                  <Route path=':id' element={<EditUser />} />
+                  <Route path='new' element={<NewUser />} />
+                  
+                </Route>
+              </Route>
 
-          <Route path="diseases">
-            <Route index element={<DiseaseList />} />
-            <Route path=':id' element={<EditDisease />} />
-            
-          </Route> {/**end dash */}
-        </Route> {/**end outer */}
-      </Route>
+              <Route path="vaccines">
+                <Route index element={<VaccineList />} />
+                <Route path=':id' element={<EditVaccine />} />
+              </Route>
+
+              <Route path="diseases">
+                <Route index element={<DiseaseList />} />
+                <Route path=':id' element={<EditDisease />} />
+                
+              </Route> {/**end dash */}
+
+            </Route> {/**end outer */}
+          </Route>  {/**end Prefetch */}
+        </Route>  {/**end Allou */}
+      </Route> {/**end PersistLogin */}
     </Routes>
   );
 }
