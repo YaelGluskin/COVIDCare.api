@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUpdateVaccineMutation, useDeleteVaccineMutation } from "./vaccinesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashCan , faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import { useDateValidation } from '../../hooks/useDateValidation';
 
 // Define a functional component called EditVaccineForm
 const EditVaccineForm = ({ vaccine, clients }) => {
@@ -25,19 +26,20 @@ const EditVaccineForm = ({ vaccine, clients }) => {
     const navigate = useNavigate();
 
     // State variables to store vaccine date and name
-    const [date, setDate] = useState('');
+    const [date, setDate] = useDateValidation();// useState('');
     const [name, setName] = useState('');
 
     // Effect hook to navigate to the vaccines page after successful addition of a new vaccine or deletion
     useEffect(() => {
         if (isSuccess || isDelSuccess) {
-            navigate('/dash/vaccines');
+            navigate(-1); 
         }
     }, [isSuccess, isDelSuccess, navigate]);
 
     // Function to handle saving of edited vaccine
     const onSaveVaccineClicked = async () => {
         // Get today's date
+        /*
         const today = new Date();
         const todayFormatted = today.toISOString().split('T')[0];
 
@@ -46,7 +48,7 @@ const EditVaccineForm = ({ vaccine, clients }) => {
             // If the date is in the future, show an error message
             alert("Please enter a valid date, up to the present.");
             return;
-        }
+        }*/
         
         // Update the vaccine with new dates
         await updateVaccine({ 
@@ -61,7 +63,7 @@ const EditVaccineForm = ({ vaccine, clients }) => {
         // Delete the vaccine by its ID
         await deleteVaccine({ id: vaccine.id });
     };
-    const onBackClientClicked = () => navigate(`/dash/vaccines`);
+    const onBackClientClicked = () => navigate(-1);
     // Determine error class based on whether there is an error in updating or deleting
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen";
     // Combine error messages from both update and delete operations
