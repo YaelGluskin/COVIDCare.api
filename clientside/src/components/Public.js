@@ -21,9 +21,9 @@ const Public = () => {
             <footer>
                 <Link to="/login">Employee Login</Link>
             </footer>
-            <footer>
+            {/* <footer>
                 <Link to="/dash">breakthrough😯</Link>
-            </footer>
+            </footer> */}
         </section>
     );
     
