@@ -36,7 +36,6 @@ const EditUserForm = ({user}) => {
     }, [password])
 
     useEffect(() => { 
-        console.log(isSuccess)
         if (isSuccess || isDeleteSuccess) { // Checking the 2 Mutation at once
             setUsername('')
             setPassword('')
