@@ -50,7 +50,15 @@ const NewClient = () => {
     email: yup.string().email().required(),
     cellPhoneNumber: yup.string().matches(/^\d{10}$/, 'Cell Phone Number must be a string of ten digits.').required(),
     telephoneNumber: yup.string().matches(/^\d{9}$/, 'Telephone Number must be a string of nine digits.').required(),
-    birthDate: yup.date().required()
+    //birthDate: yup.date().required()
+    birthDate: yup.date().required().test('is-older-than-today', 'Date must be in the past (not before 1904)', function(value) {
+      // Ensure the date is in the past
+      if (!value) return false; // If no date is provided, fail validation
+      const minDate = new Date('1904-01-01');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Set current time to midnight
+      return value >= minDate && value <= today;
+    })
   });
 
   const validationAdressSchema = yup.object().shape({
