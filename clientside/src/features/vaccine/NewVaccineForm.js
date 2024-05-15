@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useAddNewVaccineMutation} from "./vaccinesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave , faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import { useDateValidation } from '../../hooks/useDateValidation'
 
 // Define a functional component called NewVaccineForm
 const NewVaccineForm = ({ clientId }) => {
@@ -18,7 +19,7 @@ const NewVaccineForm = ({ clientId }) => {
     // Hook for navigation
     const nav = useNavigate();
     // State variables to store positive date, recovery date, and client ID
-    const [date, setDate] = useState('');
+    const [date, setDate] = useDateValidation(); //useState('');
     const [name, setName] = useState('');
     
     
@@ -27,7 +28,7 @@ const NewVaccineForm = ({ clientId }) => {
         if (isSuccess) {
             setDate('');
             setName('');           
-            nav('/dash/vaccines');
+            nav(`/dash/clients/${id}`);
         }
     }, [isSuccess, nav]);
 
@@ -35,7 +36,7 @@ const NewVaccineForm = ({ clientId }) => {
     const onDateChanged = e => setDate(e.target.value);
     const onNameChanged = e => setName(e.target.value);
     
-    const onBackClientClicked = () => nav(`/dash/${id}`);
+    const onBackClientClicked = () => nav(`/dash/clients/${id}`);
 
     // Check if all required fields are filled and the form is not loading
     const canSave = [date, name].every(Boolean) && !isLoading;
@@ -43,7 +44,7 @@ const NewVaccineForm = ({ clientId }) => {
     // Function to handle saving of a new vaccine
     const onSaveVaccineClicked = async (e) => {
         e.preventDefault();
-
+            /*
         // Get today's date
         const today = new Date();
         const todayFormatted = today.toISOString().split('T')[0];
@@ -52,7 +53,8 @@ const NewVaccineForm = ({ clientId }) => {
         if (date > todayFormatted ) {
             alert("Please enter a valid date, up to the present.");
             return;
-        }
+        }*/
+        
         
         // Check if the client has received more than three vaccinations
         if(id.nunOfVaccine > 3) { 
