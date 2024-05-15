@@ -1,6 +1,7 @@
 const Client = require('../models/Client')
+const Vaccine = require('../models/vaccine') // For delete related vaccines
+const Disease = require('../models/Disease') 
 const expressAsync = require('express-async-handler')
-const bcryptjs = require('bcrypt');
 
 // Function to get all clients
 const getClients = expressAsync(async (req, res) => {
@@ -81,6 +82,26 @@ const deleteClient = expressAsync(async (req, res) => {
     if(!client){
         return req.status(400).json({message:'client Not Found'})
     }
+
+    // ADD
+
+    // Find all vaccines associated with the client
+    const vaccines = await Vaccine.find({ client: id });
+
+    // Delete all vaccines associated with the client
+    await Promise.all(vaccines.map(async (vaccine) => { // Asynchronously delete all vaccines associated with the client.
+      await Vaccine.findByIdAndDelete(vaccine.id);
+    }));
+
+    // Find the disease associated with the client
+    const disease = await Disease.findOne({ client: id });
+
+    if (disease) {
+      // Delete the disease
+      await Disease.findByIdAndDelete(disease.id);
+    }
+
+    //
     
     const result = await client.deleteOne()
     
