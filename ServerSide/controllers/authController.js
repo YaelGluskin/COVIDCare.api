@@ -15,7 +15,7 @@ const login = asyncHandler(async (req, res) => {
     }
 
     const foundUser = await User.findOne({ username }).exec()
-    if (!foundUser || !foundUser.active) { // Check if user is found and active
+    if (!foundUser || !foundUser.activestatus) { // Check if user is found and active
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
@@ -92,6 +92,7 @@ const logout = (req, res) => {
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true }) // Clear JWT cookie, 
     // pass the same options that has been done when the cookie created
     res.json({ message: 'Cookie cleared' })
+    
 }
 
 module.exports = {
