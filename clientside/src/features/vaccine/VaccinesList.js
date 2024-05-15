@@ -9,7 +9,7 @@ const VaccinesList = () => {
         isError,
         error  
      } = useGetVaccinesQuery(
-        undefined, {
+        'VaccinesList', {
             pollingInterval: 60000,
             refetchOnFocus: true,
             refetchOnMountOrArgChange: true
