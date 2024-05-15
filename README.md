@@ -18,6 +18,8 @@ A platform efficiently manages COVID-related information such as vaccine records
 Here's an organized overview of the system implementation using Node.js, React, and MongoDB, focusing on CRUD operations and database structure:
 
 ### Backend (Node.js with Express)
+#### Backend Repository
+- [Link to Backend Repository](https://github.com/YaelGluskin/covidcare-api)
 
 1. **Server Setup**: 
    - Implemented using Node.js with Express framework.
@@ -48,6 +50,8 @@ Here's an organized overview of the system implementation using Node.js, React, 
 -
 
 ### Frontend (React)
+### Backend Repository
+- [Link to Frontend Repository](https://github.com/YaelGluskin/covidcare-frontend)
 
 1. **User Interface**:
    - Developed a user-friendly interface using React components.
