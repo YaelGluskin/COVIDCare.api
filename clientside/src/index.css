@@ -9,19 +9,18 @@
 
 /* Variables */
 :root {
-  /* Colors */
-  --BGCOLOR: #f0f0f0;
-  --BORDER-COLOR: #deb024;
-  --COLOR: #860909;
-  --ERROR: #ff0000;
-  --INACTIVE: #999;
-  --LINK-COLOR: #007bff;
-  --LINK-HOVER: #0056b3;
-  --NOTE-BGCOLOR: #f8d7da;
-  --STATUS-COMPLETE: #28a745;
-  --STATUS-OPEN: #dc3545;
-  --TABLE-BGCOLOR: #fff;
-  --TABLE-COLOR: #000;
+   /* COLORS */
+   --BGCOLOR: #0d0f62;
+   --BORDER-COLOR: #FFF;
+   --COLOR: #FFF;
+   --ERROR: firebrick;
+   --INACTIVE: lightgray;
+   --LINK-COLOR: whitesmoke;
+   --LINK-HOVER: rgba(245, 245, 245, 0.9);
+   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
+   --TABLE-BGCOLOR: #FFF;
+   --TABLE-COLOR: #000;
+   --INPUT-INVALID: #F00;
 }
 
 /* Utility Classes */
@@ -37,18 +36,16 @@
   white-space: nowrap;
 }
 
+
 .icon-button {
-  width: 80px;
-  height: 80px;
-  font-size: 1.8rem;
-  
-  background-color: var(--BORDER-COLOR);
+  width: 48px;
+  height: 48px;
+  font-size: 2.5rem;
+  background-color: transparent;
   border: none;
-  color: rgb(red, green, blue);
+  color: var(--COLOR);
   display: grid;
   place-content: center;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
 
 .icon-button:hover,
