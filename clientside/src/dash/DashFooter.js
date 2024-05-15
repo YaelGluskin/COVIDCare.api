@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const DashFooter = () => {
     // Get navigation function and current location from React Router
     const nav = useNavigate();
     const { pathname } = useLocation();
     
+    const {username, status} = useAuth();
+
     // Function to handle click on "Go Home" button
     const onGoHomeClicked = () => nav('');
 
@@ -29,9 +32,9 @@ const DashFooter = () => {
         <footer className="dash-footer">
             <p>{goHomeBtn}</p>
             {/* Placeholder for displaying current user */}
-            <p>Current User:</p>
+            <p>Current User: {username}</p>
             {/* Placeholder for displaying status */}
-            <p>Status:</p>
+            <p>Status: {status}</p>
         </footer>
     );
 
