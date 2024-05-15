@@ -1,3 +1,4 @@
+// Manage the application's state and handle data flow.
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
