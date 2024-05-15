@@ -1,4 +1,4 @@
-// Import required modules
+// Responsible for logging events asynchronously and implementing a middleware function for logging requests.
 const { format } = require('date-fns'); // Importing date formatting function from date-fns
 const { v4: uuid } = require('uuid'); // Importing UUID generation function from uuid
 const fs = require('fs'); // Importing file system module
