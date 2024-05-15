@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from './authSlice'
 import { useLoginMutation } from './authApiSlice'
 
+import usePersist from '../../hooks/usePersist'
 // Define Login component
 const Login =() => {
     // Define refs for user input and error message
@@ -14,6 +15,7 @@ const Login =() => {
     const [username, setUsername] = useState('') // State variable for username
     const [password, setPassword] = useState('') // State variable for password
     const [errMsg, setErrMsg] = useState('') // State variable for error message
+    const [persist, setPersist] = usePersist()
 
     // Get navigation function from React Router
     const nav = useNavigate() // Function to navigate to different routes
@@ -53,7 +55,7 @@ const Login =() => {
             } else { // For other errors
                 setErrMsg(err.data?.message); // Set error message from response data
             }
-            //errRef.current.focus(); // Focus on error message
+            errRef.current.focus(); // Focus on error message
         }
     }
 
@@ -61,6 +63,8 @@ const Login =() => {
     const handleUserInput = (e) => setUsername(e.target.value) // Update username state with input value
     // Function to handle password input change
     const handlePwdInput = (e) => setPassword(e.target.value) // Update password state with input value
+    
+    const handleToggle = () => setPersist(prev => !prev)
     // Determine CSS class for error message display
     const errClass = errMsg ? "errmsg" : "offscreen" // CSS class for error message
 
@@ -100,6 +104,17 @@ const Login =() => {
                         required
                     />
                     <button className="form__submit-button">Sign In</button>
+                    
+                    <label htmlFor="persist" className="form__persist">
+                        <input
+                            type="checkbox"
+                            className="form__checkbox"
+                            id="persist"
+                            onChange={handleToggle}
+                            checked={persist}
+                        />
+                        Trust This Device
+                    </label>
                 </form>
             </main>
             <footer>
@@ -109,4 +124,6 @@ const Login =() => {
     )
     return content
 }
+
+// Export username separately
 export default Login;
