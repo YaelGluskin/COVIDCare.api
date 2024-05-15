@@ -1,15 +1,27 @@
+import{ useState, useEffect } from 'react'; // For disease details
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectClientById } from './clientsApiSlice'
 
+import { selectAllDiseases } from '../disease/diseasesApiSlice';
+
 // React component representing a client row in a table
 const Client = ({ clientId }) => {
     const client = useSelector(state => selectClientById(state, clientId)) // Select client from Redux store by clientId
     const navigate = useNavigate() // Hook to navigate to different routes
-    if (!client) return null; // If client does not exist, return null (no rendering)
 
+    const allDiseases = useSelector(selectAllDiseases); // Disease
+    const [diseases, setDiseases] = useState([]);
+    useEffect(() => {
+        if (client && allDiseases) {
+            const clientDisease = allDiseases.filter(disease => disease.client === clientId);
+            setDiseases(clientDisease);
+        }
+    }, [clientId, client, allDiseases]);
+    
+    if (!client) return null; // If client does not exist, return null (no rendering)
     // Function to handle edit button click, navigates to client edit page
     const handleEdit = () => navigate(`/dash/clients/${clientId}`);
 
@@ -44,12 +56,19 @@ const Client = ({ clientId }) => {
                 <li>Not vaccinated</li> )
                 }
                     
-                    {/* <li>{client.nunOfVaccine !== 0 ? (client.nunOfVaccine Vaccinetion ): "Not vaccinated"}</li> */}
-                
+                {diseases.length > 0 ? (
+                    <div>
+                        {diseases.map(disease => (
+                            <li key={disease.id}>
+                                Diagnosed in {new Date(disease.datePositive).toLocaleDateString('en-IL', { month: 'long', year: 'numeric' })}  </li>
+                        ))}
+                    </div> ) : ( 
+                    <li>Not Diagnosed </li>  )
+                }
             </td>
 
             <td className="table__cell">
-                {/* Edit button */}
+                {/* info button */}
                 <button
                     className="icon-button table__button"
                     onClick={handleEdit}
