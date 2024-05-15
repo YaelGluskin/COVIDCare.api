@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useUpdateDiseaseMutation, useDeleteDiseaseMutation } from "./diseasesApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashCan, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useDateValidation } from '../../hooks/useDateValidation' // Date validation
 
 // Define a functional component called EditDiseaseForm
 const EditDiseaseForm = ({ disease, clients }) => {
@@ -25,13 +26,13 @@ const EditDiseaseForm = ({ disease, clients }) => {
     const navigate = useNavigate();
 
     // State variables to store positive date and recovery date
-    const [positiveDate, setPositiveDate] = useState('');
-    const [recoveryDate, setRecoveryDate] = useState('');
+    const [positiveDate, setPositiveDate] = useDateValidation(); //useState('');
+    const [recoveryDate, setRecoveryDate] = useDateValidation(); // useState('');
 
     // Effect hook to navigate to the diseases page after successful addition of a new disease or deletion
     useEffect(() => {
         if (isSuccess || isDelSuccess) {
-            navigate('/dash/diseases');
+            navigate(-1);
         }
     }, [isSuccess, isDelSuccess, navigate]);
 
@@ -77,7 +78,7 @@ const EditDiseaseForm = ({ disease, clients }) => {
         // Delete the disease by its ID
         await deleteDisease({ id: disease.id });
     };
-    const onBackClientClicked = () => navigate(`/dash/diseases/`);
+    const onBackClientClicked = () => navigate(-1);
     // Determine error class based on whether there is an error in updating or deleting
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen";
     // Combine error messages from both update and delete operations
