@@ -4,19 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash , faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import * as yup from 'yup';
+import useAuth from "../../hooks/useAuth"; // Only admin and manger can delete clients
 
 const EditClientForm = ({ client }) => {
   const [updateClient, { isLoading: updatingLoading, isSuccess: updateSuccess, isError: updateError, error: updateErrorData }] = useUpdateClientMutation();
   const [deleteClient, {  isSuccess: deleteSuccess, isError: deleteError, error: deleteErrorData }] = useDeleteClientMutation();
   const nav = useNavigate();
-
+  const {isManager, isAdmin} = useAuth(); 
   const [clientData, setClientData] = useState({
     ...client
   });
 
   useEffect(() => {
-    if (updateSuccess||deleteSuccess) {
-      nav(`/dash/clients/${client.id}`);
+    if (updateSuccess) {
+      nav(`/dash/clients/${client.id}`); // Comeback to the client info
+    }
+    if (deleteSuccess) {
+      nav(`/dash/clients`); // Comeback to the client info
     }
   }, [updateSuccess,deleteSuccess, nav]);
 
@@ -26,12 +30,15 @@ const EditClientForm = ({ client }) => {
     email: yup.string().email().required(),
     cellPhoneNumber: yup.string().matches(/^\d{10}$/, 'Cell Phone Number must be a string of ten digits.').required(),
     telephoneNumber: yup.string().matches(/^\d{9}$/, 'Telephone Number must be a string of nine digits.').required(),
-    birthDate: yup.date().required(),
-    address: yup.object().shape({
-      city: yup.string().matches(/^[\p{L}\s]+$/u, 'City can only contain letters and spaces.').required(),
-      street: yup.string().matches(/^[\p{L}\s]+$/u, 'Street can only contain letters and spaces.').required(),
-      house_number: yup.string().matches(/^\d{1,3}$/, 'House Number must be a string of 1 to 3 digits.').required()
+    birthDate: yup.date().required().test('is-older-than-today', 'Date must be in the past (not before 1904)', function(value) {
+      // Ensure the date is in the past
+      if (!value) return false; // If no date is provided, fail validation
+      const minDate = new Date('1904-01-01');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Set current time to midnight
+      return value >= minDate && value <= today;
     })
+
   });
   //
   const validationAdressSchema = yup.object().shape({
@@ -92,8 +99,9 @@ const EditClientForm = ({ client }) => {
 
   const onDeleteClientClicked = async () => {
     await deleteClient({id: client.id});
+    nav(`/dash/clients`);
   };
-  const onBackClientClicked = () => nav(`/dash/clients/`);
+  const onBackClientClicked = () => nav(`/dash/clients/${client.id}`);  // Comeback to the client info 
 
   const errClass = (updateError || deleteError) ? "errmsg" : "offscreen";
   const errorContent = updateErrorData?.message || deleteErrorData?.message;
@@ -113,13 +121,16 @@ const EditClientForm = ({ client }) => {
                 <FontAwesomeIcon icon={faSave} />
               </button>
             )}
-            <button
-              className="icon-button"
-              title="Delete"
-              onClick={onDeleteClientClicked}
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
+
+            {(isAdmin || isManager) && (
+              <button
+                className="icon-button"
+                title="Delete"
+                onClick={onDeleteClientClicked}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            )}
 
             <button
               className="icon-button"
