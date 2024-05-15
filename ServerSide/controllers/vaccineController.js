@@ -1,8 +1,6 @@
 const Vaccine = require('../models/vaccine') // Check why not capital V
 const Client = require('../models/Client')//
 const expressAsync = require('express-async-handler')
-const bcryptjs = require('bcrypt');
-const mongoose = require('mongoose');
 
 const getVaccines = expressAsync(async (req, res) => {
     const vaccines = await Vaccine.find().lean() // Get all vaccine from MongoDB 
@@ -12,7 +10,7 @@ const getVaccines = expressAsync(async (req, res) => {
     // Add client ID and client name to each vaccine before sending the response 
     const vaccineWithClient = await Promise.all(vaccines.map(async (vaccine) => {
         const client = await Client.findById(vaccine.client).lean().exec()
-        return { ...vaccine, clientID: client.clientID,  clientName: client.clientName}
+        return { ...vaccine, clientID: client.clientID,  clientName: client.clientName, clientLastName: client.clientLastName}
     }))
 
     res.json(vaccineWithClient)
@@ -25,7 +23,7 @@ const createVaccine = expressAsync(async (req, res) => {
     if (!date || !name || !client ) { 
         return res.status(400).json({ message:'All fields are required'})
     }
-    const clientRef = await Client.findById(client).exec()
+    const clientRef = await Client.findById(client).exec() 
     const numberOfClients = clientRef.nunOfVaccine
     if (numberOfClients >= 4) {
         return res.status(400).json({ message: 'Client already has 4 vaccines' });
