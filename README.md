@@ -20,6 +20,7 @@ Here's an organized overview of the system implementation using Node.js, React, 
 ### Backend (Node.js with Express)
 #### Backend Repository
 - [Link to Backend Repository](https://github.com/YaelGluskin/covidcare-api)
+- [Link to Commit History](https://github.com/YaelGluskin/COVIDCare/commits/main/ServerSide)
 
 1. **Server Setup**: 
    - Implemented using Node.js with Express framework.
