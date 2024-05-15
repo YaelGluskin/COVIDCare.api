@@ -7,11 +7,16 @@ import { selectAllDiseases } from '../disease/diseasesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
+import {useClientDataQuery}  from '../../hooks/useClientDataQuery';
 
-const ClientDetails = ({ initialClientId }) => {
+ const ClientDetails = ({ initialClientId }) => {
+
+  const { } = useClientDataQuery(); // Fetching data
+
     const [clientId, setClientId] = useState(initialClientId);
     const client = useSelector(state => selectClientById(state, clientId));
     const navigate = useNavigate();
+    
     const allVaccines = useSelector(selectAllVaccines);
     const [vaccines, setVaccines] = useState([]);
 
@@ -38,10 +43,7 @@ const ClientDetails = ({ initialClientId }) => {
     const handleEdit = () => navigate(`/dash/clients/${clientId}/edit`);
 
     const handleNewVac = () => navigate(`/dash/clients/${clientId}/newVac`);
-    const handleEditVac = ({client,id}) => navigate(`/dash/vaccines/${clientId}/edit`);
     const handleNewDis = () => navigate(`/dash/clients/${clientId}/newDis`);
-    const handleEditDis = ({clientId}) => navigate(`/dash/diseases/${clientId}`);
-    // Work
     const handleEditVaccine = (vaccineId) => { navigate(`/dash/vaccines/${vaccineId}`) };
     const handleEditDisease = (diseaseId) => { navigate(`/dash/diseases/${diseaseId}`) };
     const onBackClientClicked = () => navigate(`/dash/clients`);
