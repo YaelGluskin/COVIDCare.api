@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom'
 import { useAddNewDiseaseMutation } from "./diseasesApiSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import { useDateValidation } from '../../hooks/useDateValidation'
 
 // Define a functional component called NewDiseaseForm
 const NewDiseaseForm = () => {
@@ -23,8 +24,8 @@ const NewDiseaseForm = () => {
     const nav = useNavigate();
 
     // State variables to store positive date, recovery date, and client ID
-    const [datePositive, setDatePositive] = useState('');
-    const [dateRecovery, setDateRecovery] = useState('');
+    const [datePositive, setDatePositive] = useDateValidation();// useState('');
+    const [dateRecovery, setDateRecovery] = useDateValidation();// useState('');
    
     // Effect hook to navigate to the diseases page after successful addition of a new disease
     useEffect(() => {
@@ -60,7 +61,7 @@ const NewDiseaseForm = () => {
         const diffDays = timeDiff / (1000 * 60 * 60 * 24);
         
         if (diffDays < 10) {
-            alert("Recovery date must be at least 10 days after the positive date.");
+            alert("Recovery date must be at least 10 days after the diagnose date.");
             return;
         }
 
