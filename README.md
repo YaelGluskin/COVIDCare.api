@@ -25,7 +25,7 @@ Here's an organized overview of the system implementation using Node.js, React, 
 
 1. **Server Setup**: 
    - Implemented using Node.js with Express framework.
-   - Set up routes to handle CRUD operations for users, clients, diseases, and vaccinations.
+   - Set up routes for handling CRUD operations for users, clients, diseases, and vaccinations.
 
 2. **Database Management**:
    - Utilized MongoDB as the primary database.
@@ -78,8 +78,6 @@ By following this structured approach, the system effectively manages user data,
 ---
 
 ### Website Deployment
-
-The website is hosted on Render and can be accessed [here](https://your-website-url.com). It utilizes two repositories, one for the backend and one for the frontend. With each update to the local code, the site is automatically updated to reflect the changes in the version.
 
 The website is hosted and deployed using the [Render platform](https://render.com/). It utilizes two separate repositories—one for the backend Repository [covidcare-api ](https://github.com/YaelGluskin/covidcare-api) and one for the front-end Repository [covidcare-frontend ](https://github.com/YaelGluskin/covidcare-frontend)—each containing the respective codebase for their functionalities. With this setup, any updates made to the local codebase will reflect on the live site after being pushed to the respective repository. Render automatically detects changes in the repositories and triggers the necessary build and deployment processes to update the running version of the site accordingly. This ensures that the website is always running the latest version of both the backend and frontend code, providing a seamless and up-to-date user experience.
 
