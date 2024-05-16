@@ -2,10 +2,10 @@
 
 A platform efficiently manages COVID-related information such as vaccine records and disease status alongside personal client details, ensuring comprehensive data management.
 
-### Authors
+### Authors [@Yael Gluskin](https://github.com/YaelGluskin)
 
-- [@Yael Gluskin](https://github.com/YaelGluskin)
-
+#### Visit the webSite : [COVIDCare](https://covidcare.onrender.com) (To get a username and password, contact me).
+  
 ## Features
 
 - **Manage users with different security approaches:** Implement varying levels of access and permissions for different user roles to ensure secure data management.
