@@ -4,20 +4,21 @@ A platform efficiently manages COVID-related information such as vaccine records
 
 ### Authors [@Yael Gluskin](https://github.com/YaelGluskin)
 
-#### Visit the webSite : [COVIDCare](https://covidcare.onrender.com) (To get a username and password, contact me).
+#### Visit the website: [COVIDCare](https://covidcare.onrender.com) (To get a username and password, contact me).
   
 ## Features
 
 - **Manage users with different security approaches:** Implement varying levels of access and permissions for different user roles to ensure secure data management.
-- **Manageclients whose details can be edited:** Allow authorized users to edit and updateclient information as needed, ensuring data accuracy and relevance.
-- **Add vaccinations or diseases toclients:** Provide functionality to record and track vaccination history, disease diagnoses, and related health information for eachclient.
+- **Manage clients whose details can be edited:** Allow authorized users to edit and update client information as needed, ensuring data accuracy and relevance.
+- **Add vaccinations or diseases to clients:** Provide functionality to record and track vaccination history, disease diagnoses, and related health information for each client.
 - **Manage four databases:** Efficiently organize and maintain four separate databases to store different types of information, ensuring streamlined access and management of diverse data sets.
 
 
 
 Here's an organized overview of the system implementation using Node.js, React, and MongoDB, focusing on CRUD operations and database structure:
 
-### Backend (Node.js with Express)
+
+## Backend (Node.js with Express)
 #### Backend Repository
 - [Link to Backend Repository](https://github.com/YaelGluskin/covidcare-api)
 - [Link to Commit History](https://github.com/YaelGluskin/COVIDCare/commits/main/ServerSide)
@@ -37,7 +38,7 @@ Here's an organized overview of the system implementation using Node.js, React, 
 3. **CRUD Operations**:
    - Implemented CRUD functionalities for each collection:
      - **Users**: 
-       - Create, Read, Update, Delete (CRUD) operations for managing user accounts and roles.
+       - Create, Read, Update, and Delete (CRUD) operations for managing user accounts and roles.
      - **Clients**: 
        - CRUD operations for managing client information.
      - **Diseases**: 
@@ -48,9 +49,9 @@ Here's an organized overview of the system implementation using Node.js, React, 
 4. **API Endpoints**:
    - Documented API endpoints using Postman or other API documentation tools to describe request and response formats.
    - Tested API endpoints using Postman to ensure functionality and data integrity.
--
 
-### Frontend (React)
+
+## Frontend (React)
 #### Frontend Repository
 - [Link to Frontend Repository](https://github.com/YaelGluskin/covidcare-frontend)
 
@@ -72,10 +73,20 @@ Here's an organized overview of the system implementation using Node.js, React, 
 5. **State Management**:
    - Managed application state using React's built-in state and props mechanism or state management libraries like Redux, depending on the complexity of the application.
 
-By following this structured approach, the system effectively manages user data, client information, disease records, and vaccination details while providing a seamless user experience through the React frontend.
+By following this structured approach, the system effectively manages user data, client information, disease records, and vaccination details while providing a seamless user experience through the React front end.
+
+---
+
+### Website Deployment
+
+The website is hosted on Render and can be accessed [here](https://your-website-url.com). It utilizes two repositories, one for the backend and one for the frontend. With each update to the local code, the site is automatically updated to reflect the changes in the version.
+
+The website is hosted and deployed using the [Render platform](https://render.com/). It utilizes two separate repositories—one for the backend Repository [covidcare-api ](https://github.com/YaelGluskin/covidcare-api) and one for the front-end Repository [covidcare-frontend ](https://github.com/YaelGluskin/covidcare-frontend)—each containing the respective codebase for their functionalities. With this setup, any updates made to the local codebase will reflect on the live site after being pushed to the respective repository. Render automatically detects changes in the repositories and triggers the necessary build and deployment processes to update the running version of the site accordingly. This ensures that the website is always running the latest version of both the backend and frontend code, providing a seamless and up-to-date user experience.
+
+--- 
 
 
-**Server side simulation by screenshots**
+**Server-side simulation by screenshots**
 ![Welco,](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/Public.png)
 
 ![NAvigate](https://github.com/YaelGluskin/COVIDCare/blob/main/clientside/public/Routing.png)
