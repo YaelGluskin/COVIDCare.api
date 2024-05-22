@@ -20,7 +20,7 @@ export const store = configureStore({
 
     // The devTools option enables the Redux DevTools Extension, which provides advanced debugging capabilities.
     // It is set to true to enable the extension in the browser.
-    devTools: true
+    devTools: false
 });
 
 setupListeners(store.dispatch)

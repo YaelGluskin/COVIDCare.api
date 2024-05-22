@@ -28,7 +28,7 @@ function App() {
   return (
     <Routes>
       
-      <Route path="/" element = {<Layout/>}/>
+      <Route exact path="/" element = {<Layout/>}/>
       {/* 2 public routes */}
       <Route index element={<Public/>} />
       <Route path = "login" element={<Login/>}/>

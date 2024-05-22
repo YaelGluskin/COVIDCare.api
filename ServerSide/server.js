@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3500
 
 console.log(process.env.NODE_ENV)
 connectDB()
-// The logger wull be before everything else
+// The logger wull be before everything else 
 app.use(logger)
 app.use(cors(corsOptions)) // avoid other origins requests resources from our API
 // Receive and parse json data
@@ -40,11 +40,14 @@ app.all('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'views', '404.html'))
        
     } // For a jason request that wasent routed properly
-    else if(req.accepts('jason')) {
+    else {
+        res.sendFile(path.join(__dirname, 'views', '401.html'))
+        if(req.accepts('jason')) {
         res.json({message: 'Not Found'})
     } else { // Edge case
         res.type('txt').send('Not Found')
         }
+    }
 })
 app.use(errorHandler)
 

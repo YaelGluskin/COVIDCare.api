@@ -1,9 +1,27 @@
+// import{createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+
+// export const apiSlice = createApi({
+//     // The fetchBaseQuery function is imported from '@reduxjs/toolkit/query/react'.
+//     // It is used to configure how API requests are made, including specifying the base URL.
+//     // In this case, it sets the base URL to 'http://localhost:3500'.
+//     baseQuery: fetchBaseQuery({ 
+//         baseUrl: 'http://localhost:3500' 
+//     }),
+
+//     // The tagTypes array is provided to categorize different types of entities returned by the API.
+//     tagTypes: ['User', 'Client', 'Vaccine', 'Disease'],
+
+//     // The endpoints object is provided to define various API endpoints.
+//     // Endpoints are defined using the builder argument passed to the function.
+//     endpoints: builder => ({})
+// });
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials } from '../../features/auth/authSlice'
 
 // Define a base query function using fetchBaseQuery from Redux Toolkit Query
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:3500', // Base URL for API requests
+    baseUrl: 'https://COVIDCare-api.onrender.com', // Base URL for API requests
     credentials: 'include', // Include cookies in requests
     // Prepare headers function to add authorization header with token from Redux state
     prepareHeaders: (headers, { getState }) => {
@@ -18,6 +36,11 @@ const baseQuery = fetchBaseQuery({
 
 // Define a custom base query function with reauthentication logic
 const baseQueryWithReauth = async (args, api, extraOptions) => {
+    // Logging for debugging purposes
+    // console.log(args) // request url, method, body
+    // console.log(api) // signal, dispatch, getState()
+    // console.log(extraOptions) //custom like {shout: true}
+
     // Perform the base query using the provided arguments and extra options
     let result = await baseQuery(args, api, extraOptions)
 

@@ -43,7 +43,10 @@ import {useClientDataQuery}  from '../../hooks/useClientDataQuery';
     const handleEdit = () => navigate(`/dash/clients/${clientId}/edit`);
 
     const handleNewVac = () => navigate(`/dash/clients/${clientId}/newVac`);
+    // const handleEditVac = ({client,id}) => navigate(`/dash/vaccines/${clientId}/edit`);
     const handleNewDis = () => navigate(`/dash/clients/${clientId}/newDis`);
+    // const handleEditDis = ({clientId}) => navigate(`/dash/diseases/${clientId}`);
+    // Work
     const handleEditVaccine = (vaccineId) => { navigate(`/dash/vaccines/${vaccineId}`) };
     const handleEditDisease = (diseaseId) => { navigate(`/dash/diseases/${diseaseId}`) };
     const onBackClientClicked = () => navigate(`/dash/clients`);

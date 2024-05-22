@@ -1,5 +1,6 @@
 import { useGetUsersQuery } from "./usersApiSlice"
 import User from "./User"; // Import the User component'
+// import { useNavigate } from "react-router-dom";
 
 const UsersList = () => { // Component for displaying a list of users
     const {
@@ -14,6 +15,8 @@ const UsersList = () => { // Component for displaying a list of users
             refetchOnFocus: true,
             refetchOnMountOrArgChange: true
     });
+    // const navigate = useNavigate()  // I add a new buttom in the headfooter
+    // const handleNav = () => navigate(`/dash/users/new`);
     let content // Define content variable to render based on loading and success states
     if(isLoading) content = <p>Louding users...</p>// Display loading message while fetching data
     // Display error message if fetching data results in an error
@@ -38,6 +41,7 @@ const UsersList = () => { // Component for displaying a list of users
                         {tableContent}
                     </tbody>
                 </table>
+                {/* <button className="icon-button" title="Add new" onClick={handleNav} >  Add </button> */}
             </div>
         )
     }

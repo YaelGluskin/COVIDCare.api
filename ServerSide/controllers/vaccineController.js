@@ -1,4 +1,4 @@
-const Vaccine = require('../models/vaccine') // Check why not capital V
+const Vaccine = require('../models/Vaccine') // Check why not capital V
 const Client = require('../models/Client')//
 const expressAsync = require('express-async-handler')
 

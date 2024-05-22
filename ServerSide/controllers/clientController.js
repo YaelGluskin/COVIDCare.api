@@ -1,5 +1,5 @@
 const Client = require('../models/Client')
-const Vaccine = require('../models/vaccine') // For delete related vaccines
+const Vaccine = require('../models/Vaccine') // For delete related vaccines
 const Disease = require('../models/Disease') 
 const expressAsync = require('express-async-handler')
 
